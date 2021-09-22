@@ -8,13 +8,17 @@ function Provider({ children }) {
   const [recipesCategory, setRecipesCategory] = useState([]);
   const [recipesIngredients, setRecipesIngredients] = useState([]);
   const [recipesAreas, setRecipesAreas] = useState([]);
+  const [searchedRecipes, setSearchedRecipes] = useState([]);
 
   const [drinks, setDrinks] = useState([]);
   const [drinksCategory, setDrinksCategory] = useState([]);
+  const [searchedDrinks, setSearchedDrinks] = useState([]);
 
   const drinksObject = {
     drinks,
     drinksCategory,
+    searchedDrinks,
+    setSearchedDrinks,
   };
 
   const recipesObject = {
@@ -22,6 +26,8 @@ function Provider({ children }) {
     recipesCategory,
     recipesIngredients,
     recipesAreas,
+    searchedRecipes,
+    setSearchedRecipes,
   };
 
   async function getData(url, setState, param) {
