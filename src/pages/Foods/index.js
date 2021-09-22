@@ -1,10 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import SearchHeader from '../../components/SearchHeader';
+
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 
 function Foods({ match, history }) {
   return (
-    <SearchHeader match={ match } history={ history } />
+    <div className="foods">
+      <Header title="Comidas" search match={ match } history={ history } />
+      <Footer />
+    </div>
   );
 }
 

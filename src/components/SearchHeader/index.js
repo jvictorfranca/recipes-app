@@ -68,7 +68,6 @@ function SearchHeader({ match, history }) {
 
   return (
     <form action="GET">
-      <button type="button" data-testid="search-top-btn">Clica</button>
       <input
         type="text"
         data-testid="search-input"
