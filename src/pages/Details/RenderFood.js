@@ -40,7 +40,7 @@ export default function RenderFood(id) {
     helper.verifyLocalStorage(setDone, id);
     helper.verifyProgress(id, setProgress, 'meals');
     helper.verifyFavorite(id, setFavorite);
-  }, []); // teste
+  }, [id]); // teste
 
   if (loading) {
     return <h2>Loading</h2>;

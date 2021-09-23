@@ -42,7 +42,7 @@ export default function RenderDrink(id) {
     helper.verifyLocalStorage(setDone, id);
     helper.verifyProgress(id, setProgress, 'cocktails');
     helper.verifyFavorite(id, setFavorite);
-  }, []);
+  }, [drink, id, recomendations]);
 
   if (loading) {
     return <h2>Loading</h2>;
