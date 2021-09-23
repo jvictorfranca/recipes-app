@@ -1,7 +1,11 @@
-import React from 'react';
+import RenderDrink from './RenderDrinks';
+import RenderFood from './RenderFood';
 
-function Details() {
-  return <h1>Details</h1>;
+function Details({ match: { params: { id }, path } }) {
+  if (path.includes('comidas')) {
+    return RenderFood(id);
+  }
+  return RenderDrink(id);
 }
 
 export default Details;
