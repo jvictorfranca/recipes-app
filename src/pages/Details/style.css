@@ -6,12 +6,12 @@
 }
 
 .card {
-  min-width: 180px;
   background-color: aqua;
+  min-width: 180px;
 }
 
 .startRecipe {
+  bottom: 0;
   position: fixed;
   z-index: 100;
-  bottom: 0px;
 }
