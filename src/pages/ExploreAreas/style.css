@@ -1,0 +1,7 @@
+select {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin-top: 50px;
+}

@@ -8,8 +8,7 @@ import profileIcon from '../../images/profileIcon.svg';
 import SearchButton from './SearchButton';
 import SearchHeader from './SearchHeader';
 
-// Passar o match, history depois
-function Header({ title, search }) {
+function Header({ title, search, match, history }) {
   const [active, setActive] = useState(false);
 
   const handleActive = () => {
@@ -19,7 +18,7 @@ function Header({ title, search }) {
   return (
     <>
       <div className="header">
-        <Link to="/profile">
+        <Link to="/perfil">
           <img data-testid="profile-top-btn" src={ profileIcon } alt="Profile Icon" />
         </Link>
         <h1 data-testid="page-title">{title}</h1>
@@ -28,7 +27,9 @@ function Header({ title, search }) {
         }
       </div>
       <div className={ active ? 'search-header active' : 'search-header' }>
-        <SearchHeader />
+        {
+          active && <SearchHeader match={ match } history={ history } />
+        }
       </div>
     </>
   );

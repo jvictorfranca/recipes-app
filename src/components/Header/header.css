@@ -10,68 +10,86 @@
   width: 100%;
 }
 
-button {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  font: inherit;
-  outline: inherit;
-  padding: 0;
+.search-button {
+  filter: invert(89%) sepia(4%) saturate(426%) hue-rotate(29deg) brightness(115%);
 }
 
 .search-header {
   align-items: center;
   background-color: #2b2b30;
-  display: flex;
+  display: none;
   justify-content: center;
   margin-top: 50px;
   padding: 10px;
   position: fixed;
-  right: -110%;
   transition: 850ms;
   width: 100vw;
 }
 
 .search-header.active {
-  right: 0;
+  display: flex;
   transition: 350ms;
 }
 
 /* Search input e div */
 .search-input {
-  background-color: teal;
+  background-color: #72757e;
+  border: 2px solid #16161a;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  outline: none;
   padding: 5px;
-  width: 100vw;
+  width: 250px;
+}
+
+.search-input::placeholder {
+  color: #fffffe;
+  text-align: center;
 }
 
 .search-input-div {
-  width: auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 /* Radio buttons e div */
 .ingredient-search-radio {
-  color: red;
+  color: #fffffe;
+  margin-right: 5px;
 }
 
 .name-search-radio {
-  color: blue;
+  color: #fffffe;
+  margin-right: 5px;
 }
 
 .first-letter-search-radio {
-  color: green;
+  color: #fffffe;
 }
 
 .search-radio-div {
-  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-items: center;
+  padding: 10px;
 }
 
 /* Search Button e div */
 .search-button-div {
-  background-color: red;
-  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .exec-search-btn {
-  color: violet;
+  background-color: #7f5af0;
+  border: 2px solid #7f5af0;
+  border-radius: 10px;
+  color: #fffffe;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px;
+  width: 150px;
 }
