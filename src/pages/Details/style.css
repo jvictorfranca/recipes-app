@@ -1,0 +1,17 @@
+.recomendationsArea {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  width: 340px;
+}
+
+.card {
+  background-color: aqua;
+  min-width: 180px;
+}
+
+.startRecipe {
+  bottom: 0;
+  position: fixed;
+  z-index: 100;
+}
