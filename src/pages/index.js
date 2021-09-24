@@ -1,25 +1,33 @@
 import Details from './Details';
 import Drinks from './Drinks';
 import Explore from './Explore';
+import ExploreFoods from './ExploreFoods';
+import ExploreDrinks from './ExploreDrinks';
 import ExploreAreas from './ExploreAreas';
-import ExploreIngredients from './ExploreIngredients';
+import ExploreIngredientsFoods from './ExploreIngredientsFoods';
+import ExploreIngredientsDrinks from './ExploreIngredientsDrinks';
 import Favorites from './Favorites';
 import Foods from './Foods';
 import Login from './Login';
 import Made from './Made';
 import Profile from './Profile';
-import Progress from './Progress';
+import ProgressFood from './ProgressFood';
+import ProgressDrink from './ProgressDrink';
 
 export default {
   Details,
   Drinks,
   Explore,
+  ExploreFoods,
+  ExploreDrinks,
   ExploreAreas,
-  ExploreIngredients,
+  ExploreIngredientsFoods,
+  ExploreIngredientsDrinks,
   Favorites,
   Foods,
   Login,
   Made,
   Profile,
-  Progress,
+  ProgressFood,
+  ProgressDrink,
 };

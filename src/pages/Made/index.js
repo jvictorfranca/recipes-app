@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 import HorizontalCardDrink from '../../components/HorizontalCardDrink';
 import HorizontalCardFood from '../../components/HorizontalCardFood';
 
@@ -9,7 +11,9 @@ function Made() {
   const [showDrinks, setShowDrinks] = useState(false);
 
   return (
-    <main>
+
+    <main className="made-recipes">
+      {/* <Header title="Receitas Feitas" /> */}
 
       <button
         type="button"
@@ -56,6 +60,7 @@ function Made() {
         key={ index }
       />))}
 
+      <Footer />
     </main>
 
   );

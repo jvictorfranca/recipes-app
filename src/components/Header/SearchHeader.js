@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
-import HeaderRadioButton from '../HeaderRadioButton';
+import HeaderRadioButton from './HeaderRadioButton';
 import getURLtoFetch from '../../helpers/getURLtoFetch';
 import drinksContext from '../../context/drinksContext';
 import recipesContext from '../../context/recipesContext';
@@ -68,38 +68,49 @@ function SearchHeader({ match, history }) {
 
   return (
     <form action="GET">
-      <input
-        type="text"
-        data-testid="search-input"
-        value={ inputValue }
-        onChange={ (e) => setInputValue(e.target.value) }
-      />
-      <HeaderRadioButton
-        value={ radioIngredient }
-        text="radioIngredient"
-        onChange={ handleRadioIngredient }
-        dataTest="ingredient-search-radio"
-      />
-      <HeaderRadioButton
-        value={ radioName }
-        text="radioName"
-        onChange={ handleRadioName }
-        dataTest="name-search-radio"
-      />
-      <HeaderRadioButton
-        value={ radioFirstLetter }
-        text="radioFirstLetter"
-        onChange={ handleRadioFirstLetter }
-        dataTest="first-letter-search-radio"
-      />
-      <button
-        type="button"
-        onClick={ handleButtonClick }
-        data-testid="exec-search-btn"
-      >
-        Busca
-      </button>
-
+      <div className="search-input-div">
+        <input
+          type="text"
+          data-testid="search-input"
+          className="search-input"
+          value={ inputValue }
+          placeholder="Insira um valor"
+          onChange={ (e) => setInputValue(e.target.value) }
+        />
+      </div>
+      <div className="search-radio-div">
+        <HeaderRadioButton
+          value={ radioIngredient }
+          text="Ingredientes"
+          onChange={ handleRadioIngredient }
+          dataTest="ingredient-search-radio"
+          className="ingredient-search-radio"
+        />
+        <HeaderRadioButton
+          value={ radioName }
+          text="Nome"
+          onChange={ handleRadioName }
+          dataTest="name-search-radio"
+          className="name-search-radio"
+        />
+        <HeaderRadioButton
+          value={ radioFirstLetter }
+          text="Primeira Letra"
+          onChange={ handleRadioFirstLetter }
+          dataTest="first-letter-search-radio"
+          className="first-letter-search-radio"
+        />
+      </div>
+      <div className="search-button-div">
+        <button
+          type="button"
+          onClick={ handleButtonClick }
+          data-testid="exec-search-btn"
+          className="exec-search-btn"
+        >
+          Busca
+        </button>
+      </div>
     </form>
   );
 }
