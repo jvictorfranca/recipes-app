@@ -29,7 +29,7 @@ function Made() {
   return (
 
     <main className="made-recipes">
-      {/* <Header title="Receitas Feitas" /> */}
+      <Header title="Receitas Feitas" />
 
       <button
         type="button"
