@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardDrink from '../../components/HorizontalCardDrink';
 import HorizontalCardFood from '../../components/HorizontalCardFood';
+import testSavedFoods from '../../helpers/testSavedFoods';
 
 function Made() {
   const [foods, setFoods] = useState([]);
   const [drinks, setDrinks] = useState([]);
   const [showFoods, setShowFoods] = useState(true);
-  const [showDrinks, setShowDrinks] = useState(false);
+  const [showDrinks, setShowDrinks] = useState(true);
+
+  console.log(testSavedFoods);
+
+  useEffect(() => {
+    // const allRecipes = JSON.parse(localStorage.doneRecipes);
+    const allRecipes = testSavedFoods;
+    const allRecipesWithIndex = allRecipes.map((recipe, index) => ({ ...recipe, index }));
+    console.log(allRecipesWithIndex);
+    const foodsToSet = allRecipesWithIndex.filter((recipe) => recipe.type === 'comida');
+    console.log(foodsToSet);
+    const drinksToSet = allRecipesWithIndex.filter((recipe) => recipe.type === 'bebida');
+    console.log(drinksToSet);
+    setFoods(foodsToSet);
+    setDrinks(drinksToSet);
+  }, []);
 
   return (
 
@@ -47,8 +63,6 @@ function Made() {
       >
         Drinks
       </button>
-
-      <p>oi</p>
       {showFoods && foods.map((food, index) => (<HorizontalCardFood
         recipe={ food }
         index={ food.index }
@@ -56,7 +70,11 @@ function Made() {
       />))}
       {showDrinks && drinks.map((drink, index) => (<HorizontalCardDrink
         recipe={ drink }
-        index={ drink.index }
+        index={
+          showFoods
+            ? drink.index
+            : index
+        }
         key={ index }
       />))}
 

@@ -21,7 +21,8 @@ function verifyFavorite(id, setState) {
 }
 
 function verifyLocalStorage(param, id) {
-  const doneRecipes = localStorage.getItem('doneRecipes');
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+
   if (doneRecipes) {
     const recipe = doneRecipes.find((rec) => rec.id === id);
     if (recipe) {

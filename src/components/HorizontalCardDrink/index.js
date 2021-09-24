@@ -1,34 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Copy from 'clipboard-copy';
+import shareIcon from '../../images/shareIcon.svg';
+import './styles.css';
 
 function HorizontalCardDrink({ recipe, index }) {
-  const { image, category, name, alcoholicOrNot, date, link, tags } = recipe;
+  const { image, category, name, alcoholicOrNot, date, type, id, tags } = recipe;
+  const [showMessage, setShowmessage] = useState(false);
 
   const handleClick = () => {
-    const elem = document.createElement('textarea');
-    elem.value = link;
-    document.body.appendChild(elem);
-    elem.select();
-    document.execCommand('copy');
+    const link = `/${type}s/${id}`;
+    Copy(link);
 
-    document.body.removeChild(elem);
+    setShowmessage(true);
   };
 
   return (
-    <section>
+    <section className="done-card">
 
-      <img src={ image } alt="recipe" data-testid={ `${index}-horizontal-image` } />
+      <Link to={ `/${type}s/${id}` }>
+        <h2 data-testid={ `${index}-horizontal-name` }>{name}</h2>
+      </Link>
+
+      <Link to={ `/${type}s/${id}` }>
+        <img
+          src={ image }
+          alt="recipe"
+          data-testid={ `${index}-horizontal-image` }
+        />
+      </Link>
       <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
-      <h2 data-testid={ `${index}-horizontal-name` }>{name}</h2>
+
       <p data-testid={ `${index}-horizontal-done-date` }>{date}</p>
-      <p>{alcoholicOrNot}</p>
+      <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrNot}</p>
       <button
         type="button"
         onClick={ handleClick }
         data-testid={ `${index}-horizontal-share-btn` }
+        src={ shareIcon }
       >
-        Share
+        <img src={ shareIcon } alt="" />
       </button>
+      {showMessage && <p>Link copiado!</p>}
 
       {tags.map((tag, tagIndex) => (
         <p
@@ -37,6 +51,8 @@ function HorizontalCardDrink({ recipe, index }) {
         >
           {tag}
         </p>))}
+
+      {/* <p data-testid={ `${index}-${tag}-horizontal-tag` }>{stringTags}</p> */}
 
     </section>
 
@@ -49,7 +65,8 @@ HorizontalCardDrink.propTypes = {
     category: propTypes.string,
     name: propTypes.string,
     date: propTypes.string,
-    link: propTypes.string,
+    type: propTypes.string,
+    id: propTypes.string,
     tags: propTypes.arrayOf(propTypes.string),
     alcoholicOrNot: propTypes.string,
 

@@ -1,34 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Copy from 'clipboard-copy';
+import shareIcon from '../../images/shareIcon.svg';
+import './styles.css';
 
 function HorizontalCardFood({ recipe, index }) {
-  const { image, category, name, area, date, link, tags } = recipe;
+  const { image, category, name, area, doneDate: date, id, type, tags } = recipe;
+
+  const [showMessage, setShowmessage] = useState(false);
 
   const handleClick = () => {
-    const elem = document.createElement('textarea');
-    elem.value = link;
-    document.body.appendChild(elem);
-    elem.select();
-    document.execCommand('copy');
-
-    document.body.removeChild(elem);
+    const link = `/${type}s/${id}`;
+    Copy(link);
+    setShowmessage(true);
   };
 
   return (
-    <section>
+    <section className="done-card">
 
-      <img src={ image } alt="recipe" data-testid={ `${index}-horizontal-image` } />
-      <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
-      <h2 data-testid={ `${index}-horizontal-name` }>{name}</h2>
+      <Link to={ `/${type}s/${id}` }>
+        <h2 data-testid={ `${index}-horizontal-name` }>{name}</h2>
+      </Link>
+
+      <Link to={ `/${type}s/${id}` }>
+        <img src={ image } alt="recipe" data-testid={ `${index}-horizontal-image` } />
+      </Link>
+
+      <p data-testid={ `${index}-horizontal-top-text` }>{ `${area} - ${category}`}</p>
+
       <p data-testid={ `${index}-horizontal-done-date` }>{date}</p>
-      <p>{area}</p>
       <button
         type="button"
         onClick={ handleClick }
         data-testid={ `${index}-horizontal-share-btn` }
+        src={ shareIcon }
       >
-        Share
+        <img src={ shareIcon } alt="" />
       </button>
+
+      {showMessage && <p>Link copiado!</p>}
 
       {tags.map((tag, tagIndex) => (
         <p
@@ -48,8 +59,9 @@ HorizontalCardFood.propTypes = {
     image: propTypes.string,
     category: propTypes.string,
     name: propTypes.string,
-    date: propTypes.string,
-    link: propTypes.string,
+    doneDate: propTypes.string,
+    type: propTypes.string,
+    id: propTypes.string,
     tags: propTypes.arrayOf(propTypes.string),
     area: propTypes.string,
 
