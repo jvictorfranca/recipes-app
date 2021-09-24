@@ -10,8 +10,9 @@ function HorizontalCardDrink({ recipe, index }) {
   const [showMessage, setShowmessage] = useState(false);
 
   const handleClick = () => {
-    const link = `/${type}s/${id}`;
+    const link = `http://${window.location.href.split('/')[2]}/${type}s/${id}`;
     Copy(link);
+    console.log(window.location.href.split('/'));
 
     setShowmessage(true);
   };

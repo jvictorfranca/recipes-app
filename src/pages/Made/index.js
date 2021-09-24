@@ -12,8 +12,6 @@ function Made() {
   const [showFoods, setShowFoods] = useState(true);
   const [showDrinks, setShowDrinks] = useState(true);
 
-  console.log(testSavedFoods);
-
   useEffect(() => {
     // const allRecipes = JSON.parse(localStorage.doneRecipes);
     const allRecipes = testSavedFoods;
