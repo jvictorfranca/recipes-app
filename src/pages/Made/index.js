@@ -14,8 +14,8 @@ function Made() {
   console.log(testSavedFoods);
 
   useEffect(() => {
-    // const allRecipes = JSON.parse(localStorage.doneRecipes);
-    const allRecipes = testSavedFoods;
+    const allRecipes = JSON.parse(localStorage.doneRecipes);
+    // const allRecipes = testSavedFoods;
     const allRecipesWithIndex = allRecipes.map((recipe, index) => ({ ...recipe, index }));
     console.log(allRecipesWithIndex);
     const foodsToSet = allRecipesWithIndex.filter((recipe) => recipe.type === 'comida');
