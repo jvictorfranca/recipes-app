@@ -30,7 +30,7 @@ function Made() {
   return (
 
     <main className="made-recipes">
-      {/* <Header title="Receitas Feitas" /> */}
+      <Header title="Receitas Feitas" />
       <div className="buttons-div-made">
 
         <button
