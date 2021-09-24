@@ -34,15 +34,13 @@ export default function RenderDrink(id) {
       recomendationsData.meals.splice(initial, maxArr);
       setRecomendations(recomendationsData.meals);
 
-      if (drink && recomendations) {
-        setLoading(false);
-      }
+      setLoading(false);
     }
     getData();
     helper.verifyLocalStorage(setDone, id);
     helper.verifyProgress(id, setProgress, 'cocktails');
     helper.verifyFavorite(id, setFavorite);
-  }, [drink, id, recomendations]);
+  }, [id]);
 
   if (loading) {
     return <h2>Loading</h2>;
