@@ -4,7 +4,74 @@
   height: 40px;
   justify-content: space-between;
   left: 0;
+  padding: 10px;
   position: fixed;
   top: 0;
   width: 100%;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
+}
+
+.search-header {
+  align-items: center;
+  background-color: #2b2b30;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 10px;
+  position: fixed;
+  right: -110%;
+  transition: 850ms;
+  width: 100vw;
+}
+
+.search-header.active {
+  right: 0;
+  transition: 350ms;
+}
+
+/* Search input e div */
+.search-input {
+  background-color: teal;
+  padding: 5px;
+  width: 100vw;
+}
+
+.search-input-div {
+  width: auto;
+}
+
+/* Radio buttons e div */
+.ingredient-search-radio {
+  color: red;
+}
+
+.name-search-radio {
+  color: blue;
+}
+
+.first-letter-search-radio {
+  color: green;
+}
+
+.search-radio-div {
+  width: 100%;
+}
+
+/* Search Button e div */
+.search-button-div {
+  background-color: red;
+  width: 100%;
+}
+
+.exec-search-btn {
+  color: violet;
 }

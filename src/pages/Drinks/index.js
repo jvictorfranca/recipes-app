@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import SearchHeader from '../../components/SearchHeader';
+import SearchHeader from '../../components/Header/SearchHeader';
 
 function Drinks({ match, history }) {
   return (
@@ -14,7 +14,6 @@ Drinks.propTypes = {
   }).isRequired,
   history: propTypes.shape({
     push: propTypes.func }).isRequired,
-
 };
 
 export default Drinks;

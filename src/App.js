@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import Pages from './pages';
 import Provider from './context/provider';
 
+import './styles/Global.css';
+
 function App() {
   return (
     <Provider>
