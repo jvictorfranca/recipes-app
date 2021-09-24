@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import HorizontalCardDrink from '../../components/HorizontalCardDrink';
 import HorizontalCardFood from '../../components/HorizontalCardFood';
 import testSavedFoods from '../../helpers/testSavedFoods';
+import './styles.css';
 
 function Made() {
   const [foods, setFoods] = useState([]);
@@ -14,8 +15,8 @@ function Made() {
   console.log(testSavedFoods);
 
   useEffect(() => {
-    const allRecipes = JSON.parse(localStorage.doneRecipes);
-    // const allRecipes = testSavedFoods;
+    // const allRecipes = JSON.parse(localStorage.doneRecipes);
+    const allRecipes = testSavedFoods;
     const allRecipesWithIndex = allRecipes.map((recipe, index) => ({ ...recipe, index }));
     console.log(allRecipesWithIndex);
     const foodsToSet = allRecipesWithIndex.filter((recipe) => recipe.type === 'comida');
@@ -30,39 +31,43 @@ function Made() {
 
     <main className="made-recipes">
       <Header title="Receitas Feitas" />
+      <div className="buttons-div-made">
 
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => {
-          setShowFoods(true);
-          setShowDrinks(true);
-        } }
-      >
-        All
-      </button>
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => {
+            setShowFoods(true);
+            setShowDrinks(true);
+          } }
+        >
+          All
+        </button>
 
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => {
-          setShowFoods(true);
-          setShowDrinks(false);
-        } }
-      >
-        Food
-      </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => {
+            setShowFoods(true);
+            setShowDrinks(false);
+          } }
+        >
+          Food
+        </button>
 
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => {
-          setShowFoods(false);
-          setShowDrinks(true);
-        } }
-      >
-        Drinks
-      </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => {
+            setShowFoods(false);
+            setShowDrinks(true);
+          } }
+        >
+          Drinks
+        </button>
+
+      </div>
+
       {showFoods && foods.map((food, index) => (<HorizontalCardFood
         recipe={ food }
         index={ food.index }
