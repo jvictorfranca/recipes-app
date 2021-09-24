@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 function HorizontalCardDrink({ recipe, index }) {
-  const { image, category, name, date, link, tags } = recipe;
+  const { image, category, name, alcoholicOrNot, date, link, tags } = recipe;
 
   const handleClick = () => {
     const elem = document.createElement('textarea');
@@ -21,6 +21,7 @@ function HorizontalCardDrink({ recipe, index }) {
       <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
       <h2 data-testid={ `${index}-horizontal-name` }>{name}</h2>
       <p data-testid={ `${index}-horizontal-done-date` }>{date}</p>
+      <p>{alcoholicOrNot}</p>
       <button
         type="button"
         onClick={ handleClick }
@@ -50,6 +51,7 @@ HorizontalCardDrink.propTypes = {
     date: propTypes.string,
     link: propTypes.string,
     tags: propTypes.arrayOf(propTypes.string),
+    alcoholicOrNot: propTypes.string,
 
   }).isRequired,
   index: propTypes.number.isRequired,
