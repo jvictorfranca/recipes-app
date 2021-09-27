@@ -3,7 +3,6 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardDrink from '../../components/HorizontalCardDrink';
 import HorizontalCardFood from '../../components/HorizontalCardFood';
-import testSavedFoods from '../../helpers/testSavedFoods';
 import './styles.css';
 
 function Made() {
@@ -13,8 +12,8 @@ function Made() {
   const [showDrinks, setShowDrinks] = useState(true);
 
   useEffect(() => {
-    // const allRecipes = JSON.parse(localStorage.doneRecipes);
-    const allRecipes = testSavedFoods;
+    const allRecipes = JSON.parse(localStorage.doneRecipes);
+    // const allRecipes = testSavedFoods;
     const allRecipesWithIndex = allRecipes.map((recipe, index) => ({ ...recipe, index }));
     console.log(allRecipesWithIndex);
     const foodsToSet = allRecipesWithIndex.filter((recipe) => recipe.type === 'comida');
