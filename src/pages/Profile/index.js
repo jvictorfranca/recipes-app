@@ -7,11 +7,20 @@ import Header from '../../components/Header/Header';
 import './styles.css';
 
 function Profile({ history }) {
-  const { email } = JSON.parse(localStorage.user);
+  let answer;
+  if (localStorage.user) {
+    console.log((JSON.parse(localStorage.user)));
+    const { email } = JSON.parse(localStorage.user);
+    answer = email;
+  } else {
+    answer = 'anonimo';
+    console.log('deu nao');
+  }
+
   return (
     <main className="profile">
       <Header title="Perfil" />
-      <p data-testid="profile-email" className="profile-email">{email}</p>
+      <p data-testid="profile-email" className="profile-email">{answer}</p>
       <div className="profile-buttons-container">
         <button
           type="button"

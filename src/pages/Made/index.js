@@ -12,7 +12,8 @@ function Made() {
   const [showDrinks, setShowDrinks] = useState(true);
 
   useEffect(() => {
-    const allRecipes = JSON.parse(localStorage.doneRecipes);
+    let allRecipes = [];
+    if (localStorage.doneRecipes) { allRecipes = JSON.parse(localStorage.doneRecipes); }
     // const allRecipes = testSavedFoods;
     const allRecipesWithIndex = allRecipes.map((recipe, index) => ({ ...recipe, index }));
     console.log(allRecipesWithIndex);
