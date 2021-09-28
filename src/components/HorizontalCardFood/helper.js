@@ -1,6 +1,8 @@
 function RemoveFavorite(recipe, type, isFavorite) {
   let favoritas = JSON.parse(localStorage.getItem('favoriteRecipes'));
   let indexFinal = null;
+  console.log(recipe, type, recipe[type], favoritas);
+
   if (favoritas) {
     for (let indexFood = 0; indexFood < favoritas.length; indexFood += 1) {
       if (favoritas[indexFood].id === recipe[type]) {
@@ -10,9 +12,11 @@ function RemoveFavorite(recipe, type, isFavorite) {
   } else {
     favoritas = [];
   }
+
   if (isFavorite) {
-    favoritas.splice(indexFinal, 1);
-    localStorage.setItem('favoriteRecipes', JSON.stringify(favoritas));
+    const newFavoritas = favoritas.filter((a) => a.id !== recipe.id);
+    console.log(newFavoritas);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoritas));
   } else {
     favoritas = [];
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoritas));
