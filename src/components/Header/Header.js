@@ -37,12 +37,16 @@ function Header({ title, search, match, history }) {
 
 Header.propTypes = {
   title: propTypes.string.isRequired,
-  search: propTypes.bool.isRequired,
+  search: propTypes.bool,
   match: propTypes.shape({
     path: propTypes.string,
   }).isRequired,
   history: propTypes.shape({
     push: propTypes.func }).isRequired,
+};
+
+Header.defaultProps = {
+  search: false,
 };
 
 export default Header;

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '../../components/Footer/Footer';
+
 import Header from '../../components/Header/Header';
+
 import HorizontalCardDrink from '../../components/HorizontalCardDrink';
 import HorizontalCardFood from '../../components/HorizontalCardFood';
+
 import './styles.css';
 
 function Made() {
@@ -26,11 +28,9 @@ function Made() {
   }, []);
 
   return (
-
     <main className="made-recipes">
       <Header title="Receitas Feitas" />
       <div className="buttons-div-made">
-
         <button
           type="button"
           data-testid="filter-by-all-btn"
@@ -41,7 +41,6 @@ function Made() {
         >
           All
         </button>
-
         <button
           type="button"
           data-testid="filter-by-food-btn"
@@ -52,7 +51,6 @@ function Made() {
         >
           Food
         </button>
-
         <button
           type="button"
           data-testid="filter-by-drink-btn"
@@ -63,9 +61,7 @@ function Made() {
         >
           Drinks
         </button>
-
       </div>
-
       {showFoods && foods.map((food, index) => (<HorizontalCardFood
         recipe={ food }
         index={ food.index }
@@ -80,10 +76,7 @@ function Made() {
         }
         key={ index }
       />))}
-
-      <Footer />
     </main>
-
   );
 }
 export default Made;
