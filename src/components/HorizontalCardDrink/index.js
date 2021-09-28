@@ -2,39 +2,27 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Copy from 'clipboard-copy';
-
-import RemoveFavorite from './helper';
-
-import WhiteHeart from '../../images/whiteHeartIcon.svg';
-import BlackHeart from '../../images/blackHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
-
 import './styles.css';
 
-function HorizontalCardDrink({ recipe, index, isFavorite }) {
+function HorizontalCardDrink({ recipe, index, setFavoriteFoods }) {
   const { image, category, name, alcoholicOrNot, date, type, id, tags } = recipe;
-
   const [showMessage, setShowmessage] = useState(false);
-  const [favorite, setFavorite] = useState(true);
 
   const handleClick = () => {
     const link = `http://${window.location.href.split('/')[2]}/${type}s/${id}`;
     Copy(link);
-    console.log(window.location.href.split('/'));
 
     setShowmessage(true);
   };
 
-  const handleFavorite = () => {
-    RemoveFavorite(recipe, type, isFavorite);
-    setFavorite(!favorite);
-  };
-
   return (
     <section className="done-card">
+
       <Link to={ `/${type}s/${id}` }>
         <h2 data-testid={ `${index}-horizontal-name` }>{name}</h2>
       </Link>
+
       <Link to={ `/${type}s/${id}` }>
         <img
           src={ image }
@@ -43,6 +31,7 @@ function HorizontalCardDrink({ recipe, index, isFavorite }) {
         />
       </Link>
       <p data-testid={ `${index}-horizontal-top-text` }>{category}</p>
+
       <p data-testid={ `${index}-horizontal-done-date` }>{date}</p>
       <p data-testid={ `${index}-horizontal-top-text` }>{alcoholicOrNot}</p>
       <button
@@ -54,6 +43,7 @@ function HorizontalCardDrink({ recipe, index, isFavorite }) {
         <img src={ shareIcon } alt="" />
       </button>
       {showMessage && <p>Link copiado!</p>}
+
       {tags && tags.map((tag, tagIndex) => (
         <p
           key={ tagIndex }
@@ -61,16 +51,11 @@ function HorizontalCardDrink({ recipe, index, isFavorite }) {
         >
           {tag}
         </p>))}
-      {
-        isFavorite && <input
-          type="image"
-          src={ favorite ? BlackHeart : WhiteHeart }
-          data-testid={ `${index}-horizontal-favorite-btn` }
-          alt="Favorite"
-          onClick={ handleFavorite }
-        />
-      }
+
+      {/* <p data-testid={ `${index}-${tag}-horizontal-tag` }>{stringTags}</p> */}
+
     </section>
+
   );
 }
 
@@ -87,11 +72,6 @@ HorizontalCardDrink.propTypes = {
 
   }).isRequired,
   index: propTypes.number.isRequired,
-  isFavorite: propTypes.bool,
-};
-
-HorizontalCardDrink.defaultProps = {
-  isFavorite: false,
 };
 
 export default HorizontalCardDrink;

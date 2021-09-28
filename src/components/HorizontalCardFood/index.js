@@ -11,7 +11,7 @@ import shareIcon from '../../images/shareIcon.svg';
 
 import './styles.css';
 
-function HorizontalCardFood({ recipe, index, isFavorite }) {
+function HorizontalCardFood({ recipe, index, isFavorite, setFavoriteFoods }) {
   const { image, category, name, area, doneDate: date, id, type, tags } = recipe;
 
   const [showMessage, setShowmessage] = useState(false);
@@ -26,6 +26,7 @@ function HorizontalCardFood({ recipe, index, isFavorite }) {
   const handleFavorite = () => {
     RemoveFavorite(recipe, type, isFavorite);
     setFavorite(!favorite);
+    setFavoriteFoods(JSON.parse(localStorage.favoriteRecipes));
   };
 
   return (
@@ -80,10 +81,12 @@ HorizontalCardFood.propTypes = {
   }).isRequired,
   index: propTypes.number.isRequired,
   isFavorite: propTypes.bool,
+  setFavoriteFoods: propTypes.func,
 };
 
 HorizontalCardFood.defaultProps = {
   isFavorite: false,
+  setFavoriteFoods: () => {},
 };
 
 export default HorizontalCardFood;

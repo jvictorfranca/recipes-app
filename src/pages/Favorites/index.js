@@ -12,17 +12,17 @@ function Favorites() {
   const [drinks, setDrinks] = useState([]);
   const [showFoods, setShowFoods] = useState(false);
   const [showDrinks, setShowDrinks] = useState(false);
-  const [favoriteFoods, setFavoriteFoods] = useState([]);
+  const [favoriteFoods, setFavoriteFoods] = useState(
+    JSON.parse(localStorage.favoriteRecipes),
+  );
 
   useEffect(() => {
-    if (favoriteFoods !== JSON.parse(localStorage.favoriteRecipes)) {
-      setFavoriteFoods(JSON.parse(localStorage.favoriteRecipes));
-      console.log('atualizou');
-    }
-    console.log(favoriteFoods, JSON.parse(localStorage.favoriteRecipes));
+    console.log(favoriteFoods.length === JSON.parse(localStorage.favoriteRecipes).length);
 
-    const allRecipesWithIndex = favoriteFoods.map((recipe, index) => ({ ...recipe, index }));
-    const foodsToSet = allRecipesWithIndex.filter((recipe) => recipe.type === 'comida');
+    const allRecipesWithIndex = favoriteFoods
+      .map((recipe, index) => ({ ...recipe, index }));
+    const foodsToSet = allRecipesWithIndex
+      .filter((recipe) => recipe.type === 'comida');
     const drinksToSet = allRecipesWithIndex.filter((recipe) => recipe.type === 'bebida');
 
     if (foodsToSet) setShowFoods(true);
@@ -71,6 +71,7 @@ function Favorites() {
         index={ food.index }
         key={ index }
         isFavorite
+        setFavoriteFoods={ setFavoriteFoods }
       />))}
       {showDrinks && drinks.map((drink, index) => (<HorizontalCardDrink
         recipe={ drink }
@@ -81,6 +82,7 @@ function Favorites() {
         }
         key={ index }
         isFavorite
+        setFavoriteFoods={ setFavoriteFoods }
       />))}
     </section>
   );
