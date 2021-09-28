@@ -12,13 +12,10 @@ function Favorites() {
   const [drinks, setDrinks] = useState([]);
   const [showFoods, setShowFoods] = useState(false);
   const [showDrinks, setShowDrinks] = useState(false);
-  const [favoriteFoods, setFavoriteFoods] = useState(
-    JSON.parse(localStorage.favoriteRecipes),
-  );
+  const [favoriteFoods, setFavoriteFoods] = useState(localStorage.favoriteRecipes
+    ? JSON.parse(localStorage.favoriteRecipes) : []);
 
   useEffect(() => {
-    console.log(favoriteFoods.length === JSON.parse(localStorage.favoriteRecipes).length);
-
     const allRecipesWithIndex = favoriteFoods
       .map((recipe, index) => ({ ...recipe, index }));
     const foodsToSet = allRecipesWithIndex
