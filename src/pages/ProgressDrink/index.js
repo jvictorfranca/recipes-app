@@ -1,12 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Copy from 'clipboard-copy';
 import propTypes from 'prop-types';
-import { handleCocktails } from './Helper';
+import { useHistory } from 'react-router-dom';
+import helper from '../Details/helper';
+import { handleCocktails, getIngredientsCocktails, handleButton } from './Helper';
+
+import WhiteHeart from '../../images/whiteHeartIcon.svg';
+import BlackHeart from '../../images/blackHeartIcon.svg';
+import Share from '../../images/shareIcon.svg';
 
 export default function ProgressDrink({ match: { params: { id } } }) {
   const [drink, setDrink] = useState({});
+  const [button, setButton] = useState(true);
+  const [copied, setCopied] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const [currentIngredients, setCurrentIngredients] = useState([]);
-  const completeIngredients = currentIngredients;
+  const history = useHistory();
   const check = useRef();
+  const completeIngredients = currentIngredients;
 
   useEffect(() => {
     async function getDrink() {
@@ -15,13 +26,10 @@ export default function ProgressDrink({ match: { params: { id } } }) {
       setDrink(...data.drinks);
     }
 
-    if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
-      const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      if (cocktails[id]) {
-        setCurrentIngredients(cocktails[id]);
-      }
-    }
+    getIngredientsCocktails(id, setCurrentIngredients);
     getDrink();
+
+    helper.verifyFavorite(id, setFavorite);
   }, [id]);
 
   /* useEffect(() => {
@@ -42,6 +50,15 @@ export default function ProgressDrink({ match: { params: { id } } }) {
     }
   }
 
+  function handleRedirect() {
+    history.push('/receitas-feitas');
+  }
+
+  function shareButton() {
+    Copy(`http://localhost:3000/bebidas/${id}`);
+    setCopied(true);
+  }
+
   return (
     <div>
       <img
@@ -51,8 +68,26 @@ export default function ProgressDrink({ match: { params: { id } } }) {
         alt=""
       />
       <h1 data-testid="recipe-title">{ drink.strDrink }</h1>
-      <button data-testid="share-btn" type="button">Compartilhar</button>
-      <button data-testid="favorite-btn" type="button">Favoritar</button>
+      <input
+        type="image"
+        src={ favorite ? BlackHeart : WhiteHeart }
+        data-testid="favorite-btn"
+        alt="Favorite"
+        onClick={
+          () => helper.saveFavoriteLocalstorage(drink, favorite, setFavorite, 'idDrink')
+        }
+      />
+      <input
+        type="image"
+        alt="share"
+        src={ Share }
+        data-testid="share-btn"
+        onClick={ shareButton }
+      />
+      {
+        copied
+        && 'Link copiado!'
+      }
       <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
       <ul ref={ check }>
         {ingredients.map((ingredient, index) => (
@@ -65,9 +100,10 @@ export default function ProgressDrink({ match: { params: { id } } }) {
             {`${ingredient} ${quantity[index]}`}
             <input
               checked={ currentIngredients.includes(ingredient) || undefined }
-              onChange={
-                ({ target }) => handleCocktails(target, completeIngredients, id)
-              }
+              onChange={ ({ target }) => {
+                handleCocktails(target, completeIngredients, id);
+                handleButton(completeIngredients, ingredients, setButton, history);
+              } }
               value={ ingredient }
               id={ ingredient }
               type="checkbox"
@@ -76,7 +112,14 @@ export default function ProgressDrink({ match: { params: { id } } }) {
         ))}
       </ul>
       <p data-testid="instructions">{ drink.strInstructions }</p>
-      <button data-testid="finish-recipe-btn" type="button">Favoritar</button>
+      <button
+        disabled={ button }
+        data-testid="finish-recipe-btn"
+        type="button"
+        onClick={ handleRedirect }
+      >
+        Finalizar
+      </button>
     </div>
   );
 }

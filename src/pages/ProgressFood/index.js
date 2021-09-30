@@ -1,12 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Copy from 'clipboard-copy';
 import propTypes from 'prop-types';
-import { handleMeals } from '../ProgressDrink/Helper';
+import { useHistory } from 'react-router-dom';
+import helper from '../Details/helper';
+import { handleMeals, getIngredientsMels, handleButton } from '../ProgressDrink/Helper';
+
+import WhiteHeart from '../../images/whiteHeartIcon.svg';
+import BlackHeart from '../../images/blackHeartIcon.svg';
+import Share from '../../images/shareIcon.svg';
 
 export default function ProgressFood({ match: { params: { id } } }) {
   const [meal, setMeal] = useState({});
+  const [button, setButton] = useState(true);
+  const [copied, setCopied] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const [currentIngredients, setCurrentIngredients] = useState([]);
-  const completeIngredients = currentIngredients;
   const check = useRef();
+  const history = useHistory();
+  const completeIngredients = currentIngredients;
 
   useEffect(() => {
     async function getDrink() {
@@ -15,12 +26,8 @@ export default function ProgressFood({ match: { params: { id } } }) {
       setMeal(...data.meals);
     }
 
-    if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
-      const { meals } = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      if (meals[id]) {
-        setCurrentIngredients(meals[id]);
-      }
-    }
+    getIngredientsMels(id, setCurrentIngredients);
+    helper.verifyFavorite(id, setFavorite);
     getDrink();
   }, [id]);
 
@@ -42,6 +49,15 @@ export default function ProgressFood({ match: { params: { id } } }) {
     }
   }
 
+  function handleRedirect() {
+    history.push('/receitas-feitas');
+  }
+
+  function shareButton() {
+    Copy(`http://localhost:3000/comidas/${id}`);
+    setCopied(true);
+  }
+
   return (
     <div>
       <img
@@ -51,8 +67,26 @@ export default function ProgressFood({ match: { params: { id } } }) {
         alt=""
       />
       <h1 data-testid="recipe-title">{ meal.strMeal }</h1>
-      <button data-testid="share-btn" type="button">Compartilhar</button>
-      <button data-testid="favorite-btn" type="button">Favoritar</button>
+      <input
+        type="image"
+        src={ favorite ? BlackHeart : WhiteHeart }
+        data-testid="favorite-btn"
+        alt="Favorite"
+        onClick={
+          () => helper.saveFavoriteLocalstorage(meal, favorite, setFavorite, 'idMeal')
+        }
+      />
+      <input
+        type="image"
+        alt="share"
+        src={ Share }
+        data-testid="share-btn"
+        onClick={ shareButton }
+      />
+      {
+        copied
+        && 'Link copiado!'
+      }
       <p data-testid="recipe-category">{ meal.strCategory }</p>
       <ul ref={ check }>
         {ingredients.map((ingredient, index) => (
@@ -65,7 +99,10 @@ export default function ProgressFood({ match: { params: { id } } }) {
             {`${ingredient} ${quantity[index]}`}
             <input
               checked={ currentIngredients.includes(ingredient) || undefined }
-              onChange={ ({ target }) => handleMeals(target, completeIngredients, id) }
+              onChange={ ({ target }) => {
+                handleMeals(target, completeIngredients, id);
+                handleButton(completeIngredients, ingredients, setButton, history);
+              } }
               name={ ingredient }
               value={ ingredient }
               id={ ingredient }
@@ -75,7 +112,14 @@ export default function ProgressFood({ match: { params: { id } } }) {
         ))}
       </ul>
       <p data-testid="instructions">{ meal.strInstructions }</p>
-      <button data-testid="finish-recipe-btn" type="button">Favoritar</button>
+      <button
+        disabled={ button }
+        data-testid="finish-recipe-btn"
+        type="button"
+        onClick={ handleRedirect }
+      >
+        Favoritar
+      </button>
     </div>
   );
 }

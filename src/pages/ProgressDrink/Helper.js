@@ -62,3 +62,27 @@ export function handleMeals(target, completeIngredients, id) {
 
   localStorage.setItem('inProgressRecipes', JSON.stringify(currentProgressRecipes));
 }
+
+export function getIngredientsCocktails(id, setCurrentIngredients) {
+  if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
+    const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (cocktails !== undefined && cocktails[id] !== undefined) {
+      setCurrentIngredients(cocktails[id]);
+    }
+  }
+}
+
+export function getIngredientsMels(id, setCurrentIngredients) {
+  if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
+    const { meals } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (meals !== undefined && meals[id] !== undefined) {
+      setCurrentIngredients(meals[id]);
+    }
+  }
+}
+
+export function handleButton(completeIngredients, ingredients, setButton) {
+  if (completeIngredients.length === ingredients.length) {
+    setButton(false);
+  }
+}
