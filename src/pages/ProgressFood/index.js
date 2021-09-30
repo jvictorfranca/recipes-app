@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import propTypes from 'prop-types';
+import { handleMeals } from '../ProgressDrink/Helper';
 
 export default function ProgressFood({ match: { params: { id } } }) {
   const [meal, setMeal] = useState({});
+  const [currentIngredients, setCurrentIngredients] = useState([]);
+  const completeIngredients = currentIngredients;
+  const check = useRef();
 
   useEffect(() => {
     async function getDrink() {
@@ -9,8 +14,19 @@ export default function ProgressFood({ match: { params: { id } } }) {
       const data = await response.json();
       setMeal(...data.meals);
     }
+
+    if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
+      const { meals } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (meals[id]) {
+        setCurrentIngredients(meals[id]);
+      }
+    }
     getDrink();
   }, [id]);
+
+  /* useEffect(() => {
+    checkInput(currentIngredients, check);
+  }); */
 
   const ingredients = [];
   const quantity = [];
@@ -26,10 +42,6 @@ export default function ProgressFood({ match: { params: { id } } }) {
     }
   }
 
-  function handleChange({ target }) {
-    console.log(target.value);
-  }
-
   return (
     <div>
       <img
@@ -42,19 +54,36 @@ export default function ProgressFood({ match: { params: { id } } }) {
       <button data-testid="share-btn" type="button">Compartilhar</button>
       <button data-testid="favorite-btn" type="button">Favoritar</button>
       <p data-testid="recipe-category">{ meal.strCategory }</p>
-      {ingredients.map((ingredient, index) => (
-        <p data-testid={ `${index}-ingredient-step` } key={ index }>
-          {`${ingredient} ${quantity[index]}`}
-          <input
-            onChange={ handleChange }
-            value={ ingredient }
-            id={ ingredient }
-            type="checkbox"
-          />
-        </p>
-      ))}
+      <ul ref={ check }>
+        {ingredients.map((ingredient, index) => (
+          <li
+            data-testid={ `${index}-ingredient-step` }
+            key={ index }
+            style={ currentIngredients.includes(ingredient)
+              ? { textDecoration: 'line-through' } : undefined }
+          >
+            {`${ingredient} ${quantity[index]}`}
+            <input
+              checked={ currentIngredients.includes(ingredient) || undefined }
+              onChange={ ({ target }) => handleMeals(target, completeIngredients, id) }
+              name={ ingredient }
+              value={ ingredient }
+              id={ ingredient }
+              type="checkbox"
+            />
+          </li>
+        ))}
+      </ul>
       <p data-testid="instructions">{ meal.strInstructions }</p>
       <button data-testid="finish-recipe-btn" type="button">Favoritar</button>
     </div>
   );
 }
+
+ProgressFood.propTypes = {
+  match: propTypes.shape({
+    params: propTypes.shape({
+      id: propTypes.string,
+    }).isRequired,
+  }).isRequired,
+};

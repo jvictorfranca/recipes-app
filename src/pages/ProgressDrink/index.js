@@ -1,17 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import propTypes from 'prop-types';
+import { handleCocktails } from './Helper';
 
 export default function ProgressDrink({ match: { params: { id } } }) {
   const [drink, setDrink] = useState({});
+  const [currentIngredients, setCurrentIngredients] = useState([]);
+  const completeIngredients = currentIngredients;
+  const check = useRef();
 
   useEffect(() => {
     async function getDrink() {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
       const data = await response.json();
       setDrink(...data.drinks);
-      console.log(data);
+    }
+
+    if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
+      const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (cocktails[id]) {
+        setCurrentIngredients(cocktails[id]);
+      }
     }
     getDrink();
   }, [id]);
+
+  /* useEffect(() => {
+    checkInput(currentIngredients, check);
+  }); */
 
   const ingredients = [];
   const quantity = [];
@@ -27,10 +42,6 @@ export default function ProgressDrink({ match: { params: { id } } }) {
     }
   }
 
-  function handleChange({ target }) {
-    console.log(target.value);
-  }
-
   return (
     <div>
       <img
@@ -43,19 +54,37 @@ export default function ProgressDrink({ match: { params: { id } } }) {
       <button data-testid="share-btn" type="button">Compartilhar</button>
       <button data-testid="favorite-btn" type="button">Favoritar</button>
       <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
-      {ingredients.map((ingredient, index) => (
-        <p data-testid={ `${index}-ingredient-step` } key={ index }>
-          {`${ingredient} ${quantity[index]}`}
-          <input
-            onChange={ handleChange }
-            value={ ingredient }
-            id={ ingredient }
-            type="checkbox"
-          />
-        </p>
-      ))}
+      <ul ref={ check }>
+        {ingredients.map((ingredient, index) => (
+          <li
+            data-testid={ `${index}-ingredient-step` }
+            key={ index }
+            style={ currentIngredients.includes(ingredient)
+              ? { textDecoration: 'line-through' } : undefined }
+          >
+            {`${ingredient} ${quantity[index]}`}
+            <input
+              checked={ currentIngredients.includes(ingredient) || undefined }
+              onChange={
+                ({ target }) => handleCocktails(target, completeIngredients, id)
+              }
+              value={ ingredient }
+              id={ ingredient }
+              type="checkbox"
+            />
+          </li>
+        ))}
+      </ul>
       <p data-testid="instructions">{ drink.strInstructions }</p>
       <button data-testid="finish-recipe-btn" type="button">Favoritar</button>
     </div>
   );
 }
+
+ProgressDrink.propTypes = {
+  match: propTypes.shape({
+    params: propTypes.shape({
+      id: propTypes.string,
+    }).isRequired,
+  }).isRequired,
+};
