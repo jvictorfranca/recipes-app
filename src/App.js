@@ -31,6 +31,11 @@ function App() {
           path="/explorar/bebidas/ingredientes"
         />
         <Route exact component={ Pages.ExploreAreas } path="/explorar/comidas/area" />
+        <Route
+          exact
+          component={ Pages.ExploreDrinksArea }
+          path="/explorar/bebidas/area"
+        />
         <Route exact component={ Pages.Profile } path="/perfil" />
         <Route exact component={ Pages.Made } path="/receitas-feitas" />
         <Route exact component={ Pages.Favorites } path="/receitas-favoritas" />
