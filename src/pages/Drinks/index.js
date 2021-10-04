@@ -92,7 +92,7 @@ function Drinks({ match, history }) {
 
   return (
     <div className="drinks">
-      <Header title="Comidas" search match={ match } history={ history } />
+      <Header title="Bebidas" search match={ match } history={ history } />
 
       <button
         data-testid="All-category-filter"
