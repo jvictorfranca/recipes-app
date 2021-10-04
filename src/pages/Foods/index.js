@@ -117,15 +117,13 @@ function Foods({ match, history }) {
 
       {foods ? mealsCorrect.map((food, index) => (
 
-        <div data-testid={ `${index}-recipe-card` } key={ index }>
+        <HorizontalCardFoodList
+          recipe={ food }
+          index={ index }
+          history={ history }
+          key={ index }
+        />
 
-          <HorizontalCardFoodList
-            recipe={ food }
-            index={ index }
-            history={ history }
-          />
-
-        </div>
       ))
         : <p>Loading...</p>}
       <Footer />
