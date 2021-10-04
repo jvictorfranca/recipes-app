@@ -122,7 +122,6 @@ function Drinks({ match, history }) {
           <HorizontalCardDrinkList
             recipe={ drink }
             index={ index }
-
             history={ history }
           />
 
