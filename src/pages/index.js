@@ -13,6 +13,7 @@ import Made from './Made';
 import Profile from './Profile';
 import ProgressFood from './ProgressFood';
 import ProgressDrink from './ProgressDrink';
+import ExploreDrinksArea from './ExploreDrinksArea';
 
 export default {
   Details,
@@ -30,4 +31,5 @@ export default {
   Profile,
   ProgressFood,
   ProgressDrink,
+  ExploreDrinksArea,
 };
