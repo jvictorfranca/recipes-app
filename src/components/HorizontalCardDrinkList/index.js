@@ -11,7 +11,7 @@ import shareIcon from '../../images/shareIcon.svg';
 
 import './styles.css';
 
-function HorizontalCardFoodList({ recipe, index, isFavorite, setFavoriteFoods }) {
+function HorizontalCardDrinkList({ recipe, index, isFavorite, setFavoriteFoods }) {
   const { image, category, name, doneDate: date, id, type, tags } = recipe;
 
   const [showMessage, setShowmessage] = useState(false);
@@ -68,7 +68,7 @@ function HorizontalCardFoodList({ recipe, index, isFavorite, setFavoriteFoods })
   );
 }
 
-HorizontalCardFoodList.propTypes = {
+HorizontalCardDrinkList.propTypes = {
   recipe: propTypes.shape({
     image: propTypes.string,
     category: propTypes.string,
@@ -84,9 +84,9 @@ HorizontalCardFoodList.propTypes = {
   setFavoriteFoods: propTypes.func,
 };
 
-HorizontalCardFoodList.defaultProps = {
+HorizontalCardDrinkList.defaultProps = {
   isFavorite: false,
   setFavoriteFoods: () => {},
 };
 
-export default HorizontalCardFoodList;
+export default HorizontalCardDrinkList;
