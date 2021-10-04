@@ -55,7 +55,7 @@ function Drinks({ match, history }) {
     if (categorySelected !== category) {
       const MAX_NUMBER_DRINKS = 12;
       const responseDrinks = await fetch(
-        ` https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
+        `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
       );
       console.log(responseDrinks);
       const array = await responseDrinks.json();
