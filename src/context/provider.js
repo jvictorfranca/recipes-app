@@ -27,6 +27,7 @@ function Provider({ children }) {
     recipesIngredients,
     recipesAreas,
     searchedRecipes,
+    setRecipesIngredients,
     setSearchedRecipes,
   };
 
@@ -38,7 +39,7 @@ function Provider({ children }) {
 
   useEffect(() => {
     getData('https://www.themealdb.com/api/json/v1/1/search.php?s=', setRecipes, 'meals');
-    getData('https://www.themealdb.com/api/json/v1/1/list.php?i=list', setRecipesIngredients, 'meals');
+    /* getData('https://www.themealdb.com/api/json/v1/1/list.php?i=list', setRecipesIngredients, 'meals'); */
     getData('https://www.themealdb.com/api/json/v1/1/list.php?c=list', setRecipesCategory, 'meals');
     getData('https://www.themealdb.com/api/json/v1/1/list.php?a=list', setRecipesAreas, 'meals');
 
