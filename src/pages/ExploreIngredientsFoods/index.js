@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -12,8 +13,8 @@ function ExploreIngredientsFoods({ history }) {
     async function getData() {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
       const data = await response.json();
-      const quantity = -12;
-      setIngredientes(data.meals.reverse().splice(quantity).reverse());
+      const QUANTITY = 12;
+      setIngredientes(data.meals.filter((__, index) => index < QUANTITY));
     }
     getData();
   }, []);
@@ -46,5 +47,11 @@ function ExploreIngredientsFoods({ history }) {
     </div>
   );
 }
+
+ExploreIngredientsFoods.propTypes = {
+  history: propTypes.shape({
+    push: propTypes.func,
+  }).isRequired,
+};
 
 export default ExploreIngredientsFoods;

@@ -57,15 +57,18 @@ function Foods({ match, history }) {
     }
   }, [recipesIngredients]);
 
-  const mealsCorrect = foods.map((food) => ({
-    image: food.strMealThumb,
-    category: food.strCategory,
-    name: food.strMeal,
-    area: food.strArea,
-    id: food.idMeal,
-    type: history.location.pathname.substring(1, history.location.pathname.length - 1)
-    ,
-  }));
+  const mealsCorrect = foods.map((food) => {
+    console.log(food);
+    return ({
+      image: food.strMealThumb,
+      category: food.strCategory,
+      name: food.strMeal,
+      area: food.strArea,
+      id: food.idMeal,
+      type: history.location.pathname.substring(1, history.location.pathname.length - 1)
+      ,
+    });
+  });
 
   const handleButtonCategory = async (category) => {
     if (categorySelected !== category) {

@@ -6,19 +6,22 @@ import recipesContext from './recipesContext';
 function Provider({ children }) {
   const [recipes, setRecipes] = useState([]);
   const [recipesCategory, setRecipesCategory] = useState([]);
-  const [recipesIngredients, setRecipesIngredients] = useState([]);
+  const [recipesIngredients, setRecipesIngredients] = useState();
   const [recipesAreas, setRecipesAreas] = useState([]);
   const [searchedRecipes, setSearchedRecipes] = useState([]);
 
   const [drinks, setDrinks] = useState([]);
   const [drinksCategory, setDrinksCategory] = useState([]);
   const [searchedDrinks, setSearchedDrinks] = useState([]);
+  const [drinksIngredients, setDrinksIngredients] = useState();
 
   const drinksObject = {
     drinks,
     drinksCategory,
     searchedDrinks,
+    drinksIngredients,
     setSearchedDrinks,
+    setDrinksIngredients,
   };
 
   const recipesObject = {
