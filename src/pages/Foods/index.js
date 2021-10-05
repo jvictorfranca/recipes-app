@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardFoodList from '../../components/HorizontalCardFoodList';
+import recipesContext from '../../context/recipesContext';
 
 const BASIC_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
 function Foods({ match, history }) {
+  const { recipesIngredients } = useContext(recipesContext);
   const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categorySelected, setCategorySelected] = useState('all');
@@ -38,18 +40,35 @@ function Foods({ match, history }) {
       setFoods(mealsLimited);
     };
 
-    fetchFoods();
-  }, []);
+    const fetchFoodsIngredients = async () => {
+      const MAX_NUMBER_FOODS = 12;
+      const responseMeals = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${recipesIngredients}`);
+      const array = await responseMeals.json();
+      const { meals } = array;
+      const mealsLimited = meals
+        .filter((__, index) => index < MAX_NUMBER_FOODS);
+      setFoods(mealsLimited);
+    };
 
-  const mealsCorrect = foods.map((food) => ({
-    image: food.strMealThumb,
-    category: food.strCategory,
-    name: food.strMeal,
-    area: food.strArea,
-    id: food.idMeal,
-    type: history.location.pathname.substring(1, history.location.pathname.length - 1)
-    ,
-  }));
+    if (recipesIngredients) {
+      fetchFoodsIngredients();
+    } else {
+      fetchFoods();
+    }
+  }, [recipesIngredients]);
+
+  const mealsCorrect = foods.map((food) => {
+    console.log(food);
+    return ({
+      image: food.strMealThumb,
+      category: food.strCategory,
+      name: food.strMeal,
+      area: food.strArea,
+      id: food.idMeal,
+      type: history.location.pathname.substring(1, history.location.pathname.length - 1)
+      ,
+    });
+  });
 
   const handleButtonCategory = async (category) => {
     if (categorySelected !== category) {

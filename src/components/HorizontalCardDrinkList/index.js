@@ -37,8 +37,8 @@ function HorizontalCardDrinkList({ recipe, index, isFavorite, setFavoriteFoods }
       <Link to={ `/${type}s/${id}` }>
         <img src={ image } alt="recipe" data-testid={ `${index}-card-img` } />
       </Link>
-      <p data-testid={ `${index}-card-top-text` }>{ `${category}`}</p>
-      <p data-testid={ `${index}-card-done-date` }>{date}</p>
+      {category && <p data-testid={ `${index}-card-top-text` }>{ `${category}`}</p>}
+      {date && <p data-testid={ `${index}-card-done-date` }>{date}</p>}
       <button
         type="button"
         onClick={ handleClick }

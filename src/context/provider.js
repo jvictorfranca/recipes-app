@@ -6,19 +6,22 @@ import recipesContext from './recipesContext';
 function Provider({ children }) {
   const [recipes, setRecipes] = useState([]);
   const [recipesCategory, setRecipesCategory] = useState([]);
-  const [recipesIngredients, setRecipesIngredients] = useState([]);
+  const [recipesIngredients, setRecipesIngredients] = useState();
   const [recipesAreas, setRecipesAreas] = useState([]);
   const [searchedRecipes, setSearchedRecipes] = useState([]);
 
   const [drinks, setDrinks] = useState([]);
   const [drinksCategory, setDrinksCategory] = useState([]);
   const [searchedDrinks, setSearchedDrinks] = useState([]);
+  const [drinksIngredients, setDrinksIngredients] = useState();
 
   const drinksObject = {
     drinks,
     drinksCategory,
     searchedDrinks,
+    drinksIngredients,
     setSearchedDrinks,
+    setDrinksIngredients,
   };
 
   const recipesObject = {
@@ -27,6 +30,7 @@ function Provider({ children }) {
     recipesIngredients,
     recipesAreas,
     searchedRecipes,
+    setRecipesIngredients,
     setSearchedRecipes,
   };
 
@@ -38,7 +42,7 @@ function Provider({ children }) {
 
   useEffect(() => {
     getData('https://www.themealdb.com/api/json/v1/1/search.php?s=', setRecipes, 'meals');
-    getData('https://www.themealdb.com/api/json/v1/1/list.php?i=list', setRecipesIngredients, 'meals');
+    /* getData('https://www.themealdb.com/api/json/v1/1/list.php?i=list', setRecipesIngredients, 'meals'); */
     getData('https://www.themealdb.com/api/json/v1/1/list.php?c=list', setRecipesCategory, 'meals');
     getData('https://www.themealdb.com/api/json/v1/1/list.php?a=list', setRecipesAreas, 'meals');
 

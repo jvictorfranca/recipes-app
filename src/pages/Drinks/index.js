@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardDrinkList from '../../components/HorizontalCardDrinkList';
+import drinksContext from '../../context/drinksContext';
 
 const BASIC_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
@@ -11,6 +12,7 @@ function Drinks({ match, history }) {
   const [stateDrinks, setDrinks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categorySelected, setCategorySelected] = useState('all');
+  const { drinksIngredients } = useContext(drinksContext);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -30,6 +32,7 @@ function Drinks({ match, history }) {
   useEffect(() => {
     const fetchDrinks = async () => {
       const MAX_NUMBER_DRINKS = 12;
+      console.log('ta fazeno');
       const responseDrinks = await fetch(BASIC_URL);
       const array = await responseDrinks.json();
       const { drinks } = array;
@@ -38,8 +41,23 @@ function Drinks({ match, history }) {
       setDrinks(drinksLimited);
     };
 
-    fetchDrinks();
-  }, []);
+    const fetchDrinksIngredients = async () => {
+      const MAX_NUMBER_DRINKS = 12;
+      const responseDrinks = await
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinksIngredients}`);
+      console.log(responseDrinks);
+      console.log(drinksIngredients);
+      const array = await responseDrinks.json();
+      console.log(array);
+      const { drinks } = array;
+      const drinksLimited = drinks
+        .filter((__, index) => index < MAX_NUMBER_DRINKS);
+      setDrinks(drinksLimited);
+      console.log('nao ta fazeno');
+    };
+
+    if (drinksIngredients) { fetchDrinksIngredients(); } else { fetchDrinks(); }
+  }, [drinksIngredients]);
 
   const drinksCorrect = stateDrinks.map((drink) => ({
     image: drink.strDrinkThumb,
