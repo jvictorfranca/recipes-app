@@ -3,21 +3,21 @@ import { Link } from 'react-router-dom';
 
 import './footer.css';
 
-import drinkIcon from '../../images/drinkIcon.svg';
-import mealIcon from '../../images/mealIcon.svg';
-import exploreIcon from '../../images/exploreIcon.svg';
+import drink from '../../images/drinkIcon.svg';
+import explore from '../../images/exploreIcon.svg';
+import meal from '../../images/mealIcon.svg';
 
 export default function Footer() {
   return (
     <div data-testid="footer" className="footer">
       <Link to="/bebidas">
-        <img data-testid="drinks-bottom-btn" src={ drinkIcon } alt="" />
+        <img data-testid="drinks-bottom-btn" className="icon" src={ drink } alt="" />
       </Link>
       <Link to="/explorar">
-        <img data-testid="explore-bottom-btn" src={ exploreIcon } alt="" />
+        <img data-testid="explore-bottom-btn" className="icon" src={ explore } alt="" />
       </Link>
       <Link to="/comidas">
-        <img data-testid="food-bottom-btn" src={ mealIcon } alt="" />
+        <img data-testid="food-bottom-btn" className="icon" src={ meal } alt="" />
       </Link>
     </div>
   );

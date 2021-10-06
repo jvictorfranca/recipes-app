@@ -5,11 +5,11 @@
   padding: 0;
 }
 
-/* body {
+body {
   background-color: #16161a;
   color: #fffffe;
 }
 
-img {
+.icon {
   filter: invert(89%) sepia(4%) saturate(426%) hue-rotate(29deg) brightness(115%);
-} */
+}
