@@ -8,7 +8,6 @@ import Header from '../../components/Header/Header';
 import './style.css';
 
 function redirecionar(id, history) {
-  console.log(id);
   history.push(`/comidas/${id}`);
 }
 

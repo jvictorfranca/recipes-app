@@ -57,18 +57,15 @@ function Foods({ match, history }) {
     }
   }, [recipesIngredients]);
 
-  const mealsCorrect = foods.map((food) => {
-    console.log(food);
-    return ({
-      image: food.strMealThumb,
-      category: food.strCategory,
-      name: food.strMeal,
-      area: food.strArea,
-      id: food.idMeal,
-      type: history.location.pathname.substring(1, history.location.pathname.length - 1)
-      ,
-    });
-  });
+  const mealsCorrect = foods.map((food) => ({
+    image: food.strMealThumb,
+    category: food.strCategory,
+    name: food.strMeal,
+    area: food.strArea,
+    id: food.idMeal,
+    type: history.location.pathname.substring(1, history.location.pathname.length - 1)
+    ,
+  }));
 
   const handleButtonCategory = async (category) => {
     if (categorySelected !== category) {
@@ -76,9 +73,7 @@ function Foods({ match, history }) {
       const responseMeals = await fetch(
         `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
       );
-      console.log(responseMeals);
       const array = await responseMeals.json();
-      console.log(array);
       const { meals } = array;
       const mealsLimited = meals
         .filter((__, index) => index < MAX_NUMBER_FOODS);
@@ -88,7 +83,6 @@ function Foods({ match, history }) {
       const MAX_NUMBER_FOODS = 12;
       const responseMeals = await fetch(BASIC_URL);
       const array = await responseMeals.json();
-      console.log(array);
       const { meals } = array;
       const mealsLimited = meals
         .filter((__, index) => index < MAX_NUMBER_FOODS);
@@ -101,7 +95,6 @@ function Foods({ match, history }) {
     const MAX_NUMBER_FOODS = 12;
     const responseMeals = await fetch(BASIC_URL);
     const array = await responseMeals.json();
-    console.log(array);
     const { meals } = array;
     const mealsLimited = meals
       .filter((__, index) => index < MAX_NUMBER_FOODS);

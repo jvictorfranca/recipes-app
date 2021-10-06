@@ -32,7 +32,6 @@ function Drinks({ match, history }) {
   useEffect(() => {
     const fetchDrinks = async () => {
       const MAX_NUMBER_DRINKS = 12;
-      console.log('ta fazeno');
       const responseDrinks = await fetch(BASIC_URL);
       const array = await responseDrinks.json();
       const { drinks } = array;
@@ -45,15 +44,11 @@ function Drinks({ match, history }) {
       const MAX_NUMBER_DRINKS = 12;
       const responseDrinks = await
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinksIngredients}`);
-      console.log(responseDrinks);
-      console.log(drinksIngredients);
       const array = await responseDrinks.json();
-      console.log(array);
       const { drinks } = array;
       const drinksLimited = drinks
         .filter((__, index) => index < MAX_NUMBER_DRINKS);
       setDrinks(drinksLimited);
-      console.log('nao ta fazeno');
     };
 
     if (drinksIngredients) { fetchDrinksIngredients(); } else { fetchDrinks(); }
@@ -75,9 +70,7 @@ function Drinks({ match, history }) {
       const responseDrinks = await fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
       );
-      console.log(responseDrinks);
       const array = await responseDrinks.json();
-      console.log(array);
       const { drinks } = array;
       const drinksLimited = drinks
         .filter((__, index) => index < MAX_NUMBER_DRINKS);
@@ -87,7 +80,6 @@ function Drinks({ match, history }) {
       const MAX_NUMBER_DRINKS = 12;
       const responseDrinks = await fetch(BASIC_URL);
       const array = await responseDrinks.json();
-      console.log(array);
       const { drinks } = array;
       const drinksLimited = drinks
         .filter((__, index) => index < MAX_NUMBER_DRINKS);
@@ -100,7 +92,6 @@ function Drinks({ match, history }) {
     const MAX_NUMBER_FOODS = 12;
     const responseDrinks = await fetch(BASIC_URL);
     const array = await responseDrinks.json();
-    console.log(array);
     const { drinks } = array;
     const drinksLimited = drinks
       .filter((__, index) => index < MAX_NUMBER_FOODS);

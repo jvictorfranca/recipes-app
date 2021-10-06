@@ -22,7 +22,6 @@ function ExploreIngredientsDrinks() {
   async function redirecionar(ingredient) {
     // const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${ingredient}`);
     // const data = await response.json();
-    // console.log(data.ingredients[0].idIngredient);
     setDrinksIngredients(ingredient);
 
     history.push('/bebidas');
