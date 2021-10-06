@@ -9,7 +9,7 @@ function SearchButton({ handleActive }) {
       <input
         type="image"
         alt="Search Button"
-        className="search-button"
+        className="search-button icon"
         data-testid="search-top-btn"
         src={ searchIcon }
         onClick={ handleActive }

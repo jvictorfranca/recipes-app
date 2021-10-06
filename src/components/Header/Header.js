@@ -19,7 +19,12 @@ function Header({ title, search, match, history }) {
     <>
       <div className="header">
         <Link to="/perfil">
-          <img data-testid="profile-top-btn" src={ profileIcon } alt="Profile Icon" />
+          <img
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            className="icon"
+            alt="Profile Icon"
+          />
         </Link>
         <h1 data-testid="page-title">{title}</h1>
         {
