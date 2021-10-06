@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 
+import './styles.css';
+
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardDrinkList from '../../components/HorizontalCardDrinkList';
@@ -103,37 +105,46 @@ function Drinks({ match, history }) {
     <div className="drinks">
       <Header title="Bebidas" search match={ match } history={ history } />
 
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ () => handleButtonAll() }
-      >
-        All
-      </button>
+      <div className="recipes-buttons-container">
 
-      {categories
-        ? (
-          categories.map((category, index) => (
-            <button
-              key={ index }
-              data-testid={ `${category}-category-filter` }
-              type="button"
-              onClick={ () => handleButtonCategory(category) }
-            >
-              {category}
-            </button>)))
-        : <p>Loading...</p>}
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => handleButtonAll() }
+        >
+          All
+        </button>
 
-      {stateDrinks ? drinksCorrect.map((drink, index) => (
+        {categories
+          ? (
+            categories.map((category, index) => (
+              <button
+                key={ index }
+                data-testid={ `${category}-category-filter` }
+                type="button"
+                onClick={ () => handleButtonCategory(category) }
+              >
+                {category}
+              </button>)))
+          : <p>Loading...</p>}
 
-        <HorizontalCardDrinkList
-          recipe={ drink }
-          index={ index }
-          history={ history }
-          key={ index }
-        />
-      ))
-        : <p>Loading...</p>}
+      </div>
+
+      <div className="recipes-cards-container">
+
+        {stateDrinks ? drinksCorrect.map((drink, index) => (
+
+          <HorizontalCardDrinkList
+            recipe={ drink }
+            index={ index }
+            history={ history }
+            key={ index }
+          />
+        ))
+          : <p>Loading...</p>}
+
+      </div>
+
       <Footer />
     </div>
   );

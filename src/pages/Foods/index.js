@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 
+import './styles.css';
+
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardFoodList from '../../components/HorizontalCardFoodList';
@@ -105,39 +107,47 @@ function Foods({ match, history }) {
   return (
     <div className="foods">
       <Header title="Comidas" search match={ match } history={ history } />
+      <div className="recipes-buttons-container">
 
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ () => handleButtonAll() }
-      >
-        All
-      </button>
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => handleButtonAll() }
+        >
+          All
+        </button>
 
-      {categories
-        ? (
-          categories.map((category, index) => (
-            <button
-              key={ index }
-              data-testid={ `${category}-category-filter` }
-              type="button"
-              onClick={ () => handleButtonCategory(category) }
-            >
-              {category}
-            </button>)))
-        : <p>Loading...</p>}
+        {categories
+          ? (
+            categories.map((category, index) => (
+              <button
+                key={ index }
+                data-testid={ `${category}-category-filter` }
+                type="button"
+                onClick={ () => handleButtonCategory(category) }
+              >
+                {category}
+              </button>)))
+          : <p>Loading...</p>}
 
-      {foods ? mealsCorrect.map((food, index) => (
+      </div>
 
-        <HorizontalCardFoodList
-          recipe={ food }
-          index={ index }
-          history={ history }
-          key={ index }
-        />
+      <div className="recipes-cards-container">
 
-      ))
-        : <p>Loading...</p>}
+        {foods ? mealsCorrect.map((food, index) => (
+
+          <HorizontalCardFoodList
+            recipe={ food }
+            index={ index }
+            history={ history }
+            key={ index }
+          />
+
+        ))
+          : <p>Loading...</p>}
+
+      </div>
+
       <Footer />
     </div>
   );

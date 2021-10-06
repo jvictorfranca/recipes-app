@@ -95,22 +95,29 @@
 }
 
 .header-card-image {
-  width: 60px;
+  margin: 10px;
+  width: 80px;
 }
 
 .drinks-cards-container, .recipes-cards-container {
   display: flex;
   flex-wrap: wrap;
+  margin: 50px 0;
 }
 
 .header-card {
   align-items: center;
+  background-color: #90919e;
   border: solid white 2px;
+  border-radius: 10px;
+  color: #444447;
   display: flex;
   flex-direction: column;
-  height: 150px;
+  font-size: 13px;
   justify-content: space-around;
-  margin: 20px;
+  margin: 10px;
+  min-height: 150px;
+  padding: 5px;
   text-align: center;
-  width: 160px;
+  width: 150px;
 }

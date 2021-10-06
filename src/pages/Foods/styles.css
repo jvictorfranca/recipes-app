@@ -1,0 +1,16 @@
+.foods {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.recipes-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.recipes-cards-container {
+  display: flex;
+  justify-content: space-around;
+}
