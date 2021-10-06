@@ -9,12 +9,10 @@ import './styles.css';
 function Profile({ history }) {
   let answer;
   if (localStorage.user) {
-    console.log((JSON.parse(localStorage.user)));
     const { email } = JSON.parse(localStorage.user);
     answer = email;
   } else {
     answer = 'anonimo';
-    console.log('deu nao');
   }
 
   return (

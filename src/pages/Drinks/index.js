@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 
+import './styles.css';
+
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardDrinkList from '../../components/HorizontalCardDrinkList';
@@ -32,7 +34,6 @@ function Drinks({ match, history }) {
   useEffect(() => {
     const fetchDrinks = async () => {
       const MAX_NUMBER_DRINKS = 12;
-      console.log('ta fazeno');
       const responseDrinks = await fetch(BASIC_URL);
       const array = await responseDrinks.json();
       const { drinks } = array;
@@ -45,15 +46,11 @@ function Drinks({ match, history }) {
       const MAX_NUMBER_DRINKS = 12;
       const responseDrinks = await
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${drinksIngredients}`);
-      console.log(responseDrinks);
-      console.log(drinksIngredients);
       const array = await responseDrinks.json();
-      console.log(array);
       const { drinks } = array;
       const drinksLimited = drinks
         .filter((__, index) => index < MAX_NUMBER_DRINKS);
       setDrinks(drinksLimited);
-      console.log('nao ta fazeno');
     };
 
     if (drinksIngredients) { fetchDrinksIngredients(); } else { fetchDrinks(); }
@@ -75,9 +72,7 @@ function Drinks({ match, history }) {
       const responseDrinks = await fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`,
       );
-      console.log(responseDrinks);
       const array = await responseDrinks.json();
-      console.log(array);
       const { drinks } = array;
       const drinksLimited = drinks
         .filter((__, index) => index < MAX_NUMBER_DRINKS);
@@ -87,7 +82,6 @@ function Drinks({ match, history }) {
       const MAX_NUMBER_DRINKS = 12;
       const responseDrinks = await fetch(BASIC_URL);
       const array = await responseDrinks.json();
-      console.log(array);
       const { drinks } = array;
       const drinksLimited = drinks
         .filter((__, index) => index < MAX_NUMBER_DRINKS);
@@ -100,7 +94,6 @@ function Drinks({ match, history }) {
     const MAX_NUMBER_FOODS = 12;
     const responseDrinks = await fetch(BASIC_URL);
     const array = await responseDrinks.json();
-    console.log(array);
     const { drinks } = array;
     const drinksLimited = drinks
       .filter((__, index) => index < MAX_NUMBER_FOODS);
@@ -112,37 +105,46 @@ function Drinks({ match, history }) {
     <div className="drinks">
       <Header title="Bebidas" search match={ match } history={ history } />
 
-      <button
-        data-testid="All-category-filter"
-        type="button"
-        onClick={ () => handleButtonAll() }
-      >
-        All
-      </button>
+      <div className="recipes-buttons-container">
 
-      {categories
-        ? (
-          categories.map((category, index) => (
-            <button
-              key={ index }
-              data-testid={ `${category}-category-filter` }
-              type="button"
-              onClick={ () => handleButtonCategory(category) }
-            >
-              {category}
-            </button>)))
-        : <p>Loading...</p>}
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => handleButtonAll() }
+        >
+          All
+        </button>
 
-      {stateDrinks ? drinksCorrect.map((drink, index) => (
+        {categories
+          ? (
+            categories.map((category, index) => (
+              <button
+                key={ index }
+                data-testid={ `${category}-category-filter` }
+                type="button"
+                onClick={ () => handleButtonCategory(category) }
+              >
+                {category}
+              </button>)))
+          : <p>Loading...</p>}
 
-        <HorizontalCardDrinkList
-          recipe={ drink }
-          index={ index }
-          history={ history }
-          key={ index }
-        />
-      ))
-        : <p>Loading...</p>}
+      </div>
+
+      <div className="recipes-cards-container">
+
+        {stateDrinks ? drinksCorrect.map((drink, index) => (
+
+          <HorizontalCardDrinkList
+            recipe={ drink }
+            index={ index }
+            history={ history }
+            key={ index }
+          />
+        ))
+          : <p>Loading...</p>}
+
+      </div>
+
       <Footer />
     </div>
   );
