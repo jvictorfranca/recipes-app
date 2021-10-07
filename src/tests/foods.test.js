@@ -1,6 +1,7 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 
+import { act } from 'react-dom/test-utils';
 import renderWithRouter from './renderWithRouter';
 
 import App from '../App';
@@ -21,5 +22,33 @@ describe(('testes para a pagina Foods'), () => {
     expect(firstCard).toBeInTheDocument();
     expect(mockedFetch).toBeCalled();
     expect(mockedFetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+  });
+  it(('Testa o header da página foods'), async () => {
+    const { history } = renderWithRouter(<App />);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+    history.push('/comidas');
+    const headerButton = await screen.findByTestId('search-top-btn');
+    expect(headerButton).toBeInTheDocument();
+    // expect(await screen.findByRole('form')).not.toBeInTheDocument();
+    fireEvent.click(headerButton);
+    const formHeader = await screen.findAllByRole('radio');
+    formHeader.forEach((radio) => expect(radio).toBeInTheDocument());
+    const ingredientRadio = await screen.findByRole('radio', {
+      name: 'Ingredientes',
+    });
+    fireEvent.click(ingredientRadio);
+    const headerSearchBar = await screen.findByTestId('search-input');
+    expect(headerSearchBar.value).toBe('');
+    await act(async () => {
+      fireEvent.change(headerSearchBar, { target: { value: 'Chicken' } });
+      const buttonSearch = await screen.getByTestId('exec-search-btn');
+      fireEvent.click(buttonSearch);
+    });
+
+    expect(mockedFetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=Chicken');
+
+    const headerSearchCard = await screen.getByText('Brown Stew Chicken');
+    expect(headerSearchCard).toBeInTheDocument();
   });
 });
