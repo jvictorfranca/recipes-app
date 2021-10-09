@@ -14,6 +14,7 @@ function HeaderRadioButton({ value, onChange, text, dataTest, className }) {
         name="radioSearch"
         data-testid={ dataTest }
         onChange={ onChange }
+        onClick={ onChange }
       />
     </label>
   );
