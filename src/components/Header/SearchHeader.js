@@ -162,7 +162,7 @@ function SearchHeader({ match, history }) {
           {searchedDrinks.map((drink, index) => (<HeaderCardDrink
             drink={ drink }
             index={ index }
-            key={ drink.idMeal }
+            key={ drink.idDrink }
           />))}
         </div>)}
 
