@@ -2,7 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 function HeaderCardDrink({ drink, index }) {
-  console.log(drink);
   return (
     <div
       data-testid={ `${index}-recipe-card` }

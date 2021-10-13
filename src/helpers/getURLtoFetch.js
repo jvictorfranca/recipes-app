@@ -1,4 +1,4 @@
-const getURLtoFetch = (type, radio, inputValue) => {
+const getURLtoFetch = (type, radio, inputValue = '') => {
   let answer;
 
   if (radio === 'radioFirstLetter' && inputValue.length > 1) {

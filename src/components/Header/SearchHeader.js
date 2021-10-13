@@ -47,7 +47,6 @@ function SearchHeader({ match, history }) {
     const URL = getURLtoFetch(match.path, radioSelected, inputValue);
     fetch(URL).then((results) => results.json()).then((items) => {
       setItens(items);
-      console.log((items));
       if ((match.path === '/comidas' && items.meals === null)
       || (match.path === '/bebidas' && items.drinks === null)) {
         global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
@@ -163,7 +162,7 @@ function SearchHeader({ match, history }) {
           {searchedDrinks.map((drink, index) => (<HeaderCardDrink
             drink={ drink }
             index={ index }
-            key={ drink.idMeal }
+            key={ drink.idDrink }
           />))}
         </div>)}
 
