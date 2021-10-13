@@ -1,6 +1,7 @@
 import Copy from 'clipboard-copy';
 
 function verifyProgress(id, setState, chave) {
+  console.log(chave);
   if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
     const recipes = JSON.parse(localStorage.getItem('inProgressRecipes'))[chave];
     if (recipes && recipes[id] !== undefined) {

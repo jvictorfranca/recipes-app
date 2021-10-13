@@ -47,6 +47,6 @@ describe(('testa a função getURLtoFetch'), () => {
 
   test(('testa caso inputValue'), () => {
     const URL = getURLtoFetch(undefined, undefined, 'a');
-    expect(URL).toEqual(undefined);
+    expect(URL).toBe(undefined);
   });
 });
