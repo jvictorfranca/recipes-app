@@ -43,6 +43,7 @@ export function handleMeals(target, completeIngredients, id) {
   const { checked, value } = target;
 
   let currentProgressRecipes = {};
+  console.log(completeIngredients);
 
   if (Object.prototype.hasOwnProperty.call(localStorage, 'inProgressRecipes')) {
     currentProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));

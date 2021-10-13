@@ -12,7 +12,21 @@
 //   handleMeals, getIngredientsCocktails, getIngredientsMels } from '../pages/ProgressDrink/Helper';
 
 import {
-  getIngredientsCocktails, getIngredientsMels } from '../pages/ProgressDrink/Helper';
+  getIngredientsCocktails, getIngredientsMels,
+  handleMeals } from '../pages/ProgressDrink/Helper';
+
+const mockedTarged = {
+  value: 'Celery',
+  checked: true,
+  parentNode: {
+    style: {
+      textDecoration: 'through',
+    },
+  } };
+
+const mockedCompletedIngredients = ['Celery'];
+
+const mockedId = 13501;
 
 describe(('Testa a função getIngredientsCocktails'), () => {
   const mockedDrinks = {
@@ -35,7 +49,7 @@ describe(('Testa a função getIngredientsCocktails'), () => {
     cocktails: mockedDrinks,
   };
 
-  test(('testa a função'), () => {
+  test(('testa a função especificada'), () => {
     localStorage.inProgressRecipes = JSON.stringify(mockedInprogressRecipes);
     getIngredientsCocktails(mockedIdDrink, mockedSetItens);
     expect(JSON.stringify(array)).toBe(JSON.stringify([['Amaretto']]));
@@ -67,5 +81,11 @@ describe(('Testa a função getIngredientsMeals'), () => {
     localStorage.inProgressRecipes = JSON.stringify(mockedInprogressRecipes);
     getIngredientsMels(mockedIdMeal, mockedSetItens);
     expect(JSON.stringify(array)).toBe(JSON.stringify([['Amaretto']]));
+  });
+});
+
+describe(('testa handleMeals'), () => {
+  test(('testa a função'), () => {
+    handleMeals(mockedTarged, mockedCompletedIngredients, mockedId);
   });
 });
