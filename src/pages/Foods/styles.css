@@ -1,16 +1,32 @@
 .foods {
+  align-items: center;
+  background-color: #ffcc01;
   display: flex;
   flex-direction: column;
-
 }
 
 .recipes-buttons-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  margin: 20px;
+  margin-top: 50px;
+  width: 350px;
 }
 
 .recipes-cards-container {
   display: flex;
   justify-content: space-around;
+  margin-top: 20px;
+}
+
+.recipes-buttons {
+  background-color: #822535;
+  border-radius: 5px;
+  color: white;
+  flex-basis: auto;
+  flex-grow: 1;
+  font-size: 0.9em;
+  margin: 5px;
+  margin-top: 5px;
+  width: 90px;
 }

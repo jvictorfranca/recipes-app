@@ -46,14 +46,21 @@ function HorizontalCardFoodList({ recipe, index, isFavorite, setFavoriteFoods })
 
         </p>)}
       <p data-testid={ `${index}-card-done-date` }>{date}</p>
-      <button
+      {/* <buttond
         type="button"
         onClick={ handleClick }
         data-testid={ `${index}-card-share-btn` }
         src={ shareIcon }
       >
         <img src={ shareIcon } alt="" />
-      </button>
+      </buttond> */}
+      {/* <input
+        type="image"
+        alt="share"
+        src={ shareIcon }
+        data-testid={ `${index}-card-share-btn` }
+        onClick={ handleClick }
+      />
       {showMessage && <p>Link copiado!</p>}
       {tags && tags.map((tag, tagIndex) => (
         <p
@@ -70,7 +77,7 @@ function HorizontalCardFoodList({ recipe, index, isFavorite, setFavoriteFoods })
           alt="Favorite"
           onClick={ handleFavorite }
         />
-      }
+      } */}
     </section>
   );
 }

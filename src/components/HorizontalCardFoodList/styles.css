@@ -1,14 +1,24 @@
 .done-card {
+  background: #822535;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
 .done-card img {
+  border-radius: 5px;
   height: 100px;
 }
 
-.done-card button {
+.done-card h2 {
+  color: white;
+}
+
+.done-card p {
+  color: white;
+}
+
+/* .done-card button {
   background-color: rgb(95, 94, 94);
   height: 30px;
   width: 30px;
@@ -17,4 +27,4 @@
 .done-card button img {
   height: 20px;
   width: 20px;
-}
+} */

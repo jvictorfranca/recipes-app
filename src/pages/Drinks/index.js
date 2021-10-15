@@ -110,6 +110,7 @@ function Drinks({ match, history }) {
         <button
           data-testid="All-category-filter"
           type="button"
+          className="recipes-buttons"
           onClick={ () => handleButtonAll() }
         >
           All
@@ -120,6 +121,7 @@ function Drinks({ match, history }) {
             categories.map((category, index) => (
               <button
                 key={ index }
+                className="recipes-buttons"
                 data-testid={ `${category}-category-filter` }
                 type="button"
                 onClick={ () => handleButtonCategory(category) }

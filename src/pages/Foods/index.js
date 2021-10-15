@@ -108,10 +108,10 @@ function Foods({ match, history }) {
     <div className="foods">
       <Header title="Comidas" search match={ match } history={ history } />
       <div className="recipes-buttons-container">
-
         <button
           data-testid="All-category-filter"
           type="button"
+          className="recipes-buttons"
           onClick={ () => handleButtonAll() }
         >
           All
@@ -121,6 +121,7 @@ function Foods({ match, history }) {
           ? (
             categories.map((category, index) => (
               <button
+                className="recipes-buttons"
                 key={ index }
                 data-testid={ `${category}-category-filter` }
                 type="button"
