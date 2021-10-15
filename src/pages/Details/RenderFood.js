@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import helper from './helper';
+import '../../styles/Global.css';
 
 import WhiteHeart from '../../images/whiteHeartIcon.svg';
 import BlackHeart from '../../images/blackHeartIcon.svg';
@@ -77,6 +78,7 @@ export default function RenderFood(id) {
         type="button"
         data-testid="share-btn"
         onClick={ () => helper.shareButton(setCopied) }
+        className="selecting-button"
       >
         Share
       </button>
@@ -145,7 +147,7 @@ export default function RenderFood(id) {
       <button
         type="button"
         data-testid="start-recipe-btn"
-        className="startRecipe"
+        className="startRecipe  selecting-button"
         disabled={ done }
         onClick={ () => inProgressRedirect(history, id) }
       >

@@ -75,6 +75,7 @@ export default function RenderDrink(id) {
         type="button"
         data-testid="share-btn"
         onClick={ () => helper.shareButton(setCopied) }
+        className="selecting-button"
       >
         Share
       </button>
@@ -136,7 +137,7 @@ export default function RenderDrink(id) {
       <button
         type="button"
         data-testid="start-recipe-btn"
-        className="startRecipe"
+        className="startRecipe selecting-button"
         disabled={ done }
         onClick={ () => inProgressRedirect(history, id) }
       >

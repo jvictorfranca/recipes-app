@@ -20,6 +20,7 @@ function ExploreFoods() {
         data-testid="explore-by-ingredient"
         onClick={ () => history.push('/explorar/comidas/ingredientes') }
         style={ { marginTop: '50px' } }
+        className="selecting-button"
       >
         Por Ingredientes
       </button>
@@ -28,6 +29,7 @@ function ExploreFoods() {
         data-testid="explore-by-area"
         onClick={ () => history.push('/explorar/comidas/area') }
         style={ { marginTop: '50px' } }
+        className="selecting-button"
       >
         Por Local de Origem
       </button>
@@ -36,6 +38,7 @@ function ExploreFoods() {
         data-testid="explore-surprise"
         style={ { marginTop: '50px' } }
         onClick={ aleatory }
+        className="selecting-button"
       >
         Me Surpreenda!
       </button>

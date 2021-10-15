@@ -20,6 +20,7 @@ function ExploreDrinks() {
         data-testid="explore-by-ingredient"
         onClick={ () => history.push('/explorar/bebidas/ingredientes') }
         style={ { marginTop: '50px' } }
+        className="selecting-button"
       >
         Por Ingredientes
       </button>
@@ -27,6 +28,7 @@ function ExploreDrinks() {
         type="button"
         data-testid="explore-surprise"
         onClick={ aleatory }
+        className="selecting-button"
       >
         Me Surpreenda!
       </button>

@@ -6,8 +6,8 @@ function Login() {
   const PASSWORD_MINIMUM_LENGHT = 6;
 
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: 'exampleuser@example.com',
+    password: 'thatsAgoodPassword',
   });
 
   const handleChange = ({ target: { name, value } }) => {
@@ -44,6 +44,7 @@ function Login() {
           data-testid="email-input"
           placeholder="Insira seu e-mail"
           onChange={ handleChange }
+          value={user.email}
         />
       </label>
       <label htmlFor="password-input">
@@ -53,6 +54,7 @@ function Login() {
           data-testid="password-input"
           placeholder="insira sua senha"
           onChange={ handleChange }
+          value={user.password}
         />
       </label>
       <button

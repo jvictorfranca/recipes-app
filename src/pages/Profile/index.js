@@ -26,6 +26,7 @@ function Profile({ history }) {
           onClick={ () => {
             history.push('/receitas-feitas');
           } }
+          className="selecting-button"
         >
           Receitas Feitas
 
@@ -36,6 +37,7 @@ function Profile({ history }) {
           onClick={ () => {
             history.push('/receitas-favoritas');
           } }
+          className="selecting-button"
         >
           Receitas Favoritas
 
@@ -47,6 +49,7 @@ function Profile({ history }) {
             localStorage.clear();
             history.push('/');
           } }
+          className="selecting-button"
         >
           Sair
         </button>
