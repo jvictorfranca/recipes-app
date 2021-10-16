@@ -112,7 +112,6 @@ function Drinks({ match, history }) {
           type="button"
           className="recipes-buttons"
           onClick={ () => handleButtonAll() }
-          className="selecting-button"
         >
           All
         </button>
@@ -126,7 +125,6 @@ function Drinks({ match, history }) {
                 data-testid={ `${category}-category-filter` }
                 type="button"
                 onClick={ () => handleButtonCategory(category) }
-                className="selecting-button"
               >
                 {category}
               </button>)))

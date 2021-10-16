@@ -43,39 +43,13 @@ function Profile({ history }) {
           </button>
         </div>
         <button
-<<<<<<< HEAD
-          type="button"
-          data-testid="profile-done-btn"
-          onClick={ () => {
-            history.push('/receitas-feitas');
-          } }
-          className="selecting-button"
-        >
-          Receitas Feitas
-
-        </button>
-        <button
-          type="button"
-          data-testid="profile-favorite-btn"
-          onClick={ () => {
-            history.push('/receitas-favoritas');
-          } }
-          className="selecting-button"
-        >
-          Receitas Favoritas
-
-        </button>
-        <button
-=======
           className="recipes-buttons"
->>>>>>> 190c7b5b6ace6754776bfa88032e1e49b9d84e80
           type="button"
           data-testid="profile-logout-btn"
           onClick={ () => {
             localStorage.clear();
             history.push('/');
           } }
-          className="selecting-button"
         >
           Sair
         </button>
