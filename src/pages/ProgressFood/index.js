@@ -3,11 +3,14 @@ import Copy from 'clipboard-copy';
 import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import helper from '../Details/helper';
-import { handleMeals, getIngredientsMels, handleButton } from '../ProgressDrink/Helper';
+import { handleMeals, getIngredientsMels, handleButton, checkInput } from '../ProgressDrink/Helper';
 
 import WhiteHeart from '../../images/whiteHeartIcon.svg';
 import BlackHeart from '../../images/blackHeartIcon.svg';
 import Share from '../../images/shareIcon.svg';
+
+import './style.css';
+
 
 export default function ProgressFood({ match: { params: { id } } }) {
   const [meal, setMeal] = useState({});
@@ -31,9 +34,9 @@ export default function ProgressFood({ match: { params: { id } } }) {
     getDrink();
   }, [id]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     checkInput(currentIngredients, check);
-  }); */
+  });
 
   const ingredients = [];
   const quantity = [];
@@ -59,67 +62,80 @@ export default function ProgressFood({ match: { params: { id } } }) {
   }
 
   return (
-    <div>
+    <div className="container">
       <img
         data-testid="recipe-photo"
+        className="progress-img"
         style={ { height: '150px' } }
         src={ meal.strMealThumb }
         alt=""
       />
-      <h1 data-testid="recipe-title">{ meal.strMeal }</h1>
-      <input
-        type="image"
-        src={ favorite ? BlackHeart : WhiteHeart }
-        data-testid="favorite-btn"
-        alt="Favorite"
-        onClick={
-          () => helper.saveFavoriteLocalstorage(meal, favorite, setFavorite, 'idMeal')
-        }
-      />
-      <input
-        type="image"
-        alt="share"
-        src={ Share }
-        data-testid="share-btn"
-        onClick={ shareButton }
-      />
-      {
-        copied
-        && 'Link copiado!'
-      }
-      <p data-testid="recipe-category">{ meal.strCategory }</p>
-      <ul ref={ check }>
-        {ingredients.map((ingredient, index) => (
-          <li
-            data-testid={ `${index}-ingredient-step` }
-            key={ index }
-            style={ currentIngredients.includes(ingredient)
-              ? { textDecoration: 'line-through' } : undefined }
-          >
-            {`${ingredient} ${quantity[index]}`}
+      <div className="container-progress">
+        <div className="title-style">
+          <div>
+            <h2 data-testid="recipe-title">{ meal.strMeal }</h2>
+            <h4 data-testid="recipe-category">{ meal.strCategory }</h4>
+          </div>
+          <div className="icon-style">
             <input
-              checked={ currentIngredients.includes(ingredient) || undefined }
-              onChange={ ({ target }) => {
-                handleMeals(target, completeIngredients, id);
-                handleButton(completeIngredients, ingredients, setButton, history);
-              } }
-              name={ ingredient }
-              value={ ingredient }
-              id={ ingredient }
-              type="checkbox"
+              type="image"
+              src={ favorite ? BlackHeart : WhiteHeart }
+              data-testid="favorite-btn"
+              alt="Favorite"
+              onClick={
+                () => helper.saveFavoriteLocalstorage(meal, favorite, setFavorite, 'idMeal')
+              }
             />
-          </li>
-        ))}
-      </ul>
-      <p data-testid="instructions">{ meal.strInstructions }</p>
+            <input
+              type="image"
+              alt="share"
+              src={ Share }
+              data-testid="share-btn"
+              onClick={ shareButton }
+            />
+          </div>
+          {
+            copied
+            && 'Link copiado!'
+          }
+        </div>
+      <h3>Ingredients</h3>
+      <div className="ing-style">
+        <ul ref={ check }>
+          {ingredients.map((ingredient, index) => (
+            <li
+              data-testid={ `${index}-ingredient-step` }
+              key={ index }
+            >
+              {`${ingredient} ${quantity[index]}`}
+              <input
+                  onChange={ ({ target }) => {
+                  handleMeals(target, completeIngredients, id);
+                  handleButton(completeIngredients, ingredients, setButton, history);
+                } }
+                name={ ingredient }
+                value={ ingredient }
+                id={ ingredient }
+                type="checkbox"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <h3>Instructions</h3>
+      <div className="inst-style">
+        <p data-testid="instructions">{ meal.strInstructions }</p>
+      </div>
       <button
+        className="progress-recipe-btn"
         disabled={ button }
         data-testid="finish-recipe-btn"
         type="button"
         onClick={ handleRedirect }
       >
-        Favoritar
+        Finalizar Receita
       </button>
+      </div>
     </div>
   );
 }

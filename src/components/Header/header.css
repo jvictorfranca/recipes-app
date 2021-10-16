@@ -1,12 +1,11 @@
 .header {
+  background-color: #e6af2e;
   bottom: 0;
   display: flex;
-  height: 40px;
+  height: 10vh;
   justify-content: space-between;
   left: 0;
   padding: 10px;
-
-  /* position: fixed; */
   top: 0;
   width: 100%;
 }
@@ -17,13 +16,14 @@
 
 .search-header {
   align-items: center;
-  background-color: #2b2b30;
+  background-color: #e6af2e;
+  border-radius: 5px;
   display: none;
   justify-content: center;
   margin-top: 50px;
   padding: 10px;
   transition: 850ms;
-  width: 100vw;
+  width: 95vw;
 }
 
 .search-header.active {
@@ -33,14 +33,14 @@
 
 /* Search input e div */
 .search-input {
-  background-color: #72757e;
+  background-color: white;
   border: 2px solid #16161a;
   border-radius: 10px;
   font-size: 16px;
+  height: 40px;
   margin-bottom: 5px;
   outline: none;
   padding: 5px;
-  width: 250px;
 }
 
 .search-input::placeholder {
@@ -51,7 +51,8 @@
 .search-input-div {
   align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /* Radio buttons e div */
@@ -67,6 +68,8 @@
 
 .first-letter-search-radio {
   color: #fffffe;
+  font-size: 17px;
+  padding: 2px;
 }
 
 .search-radio-div {
@@ -84,14 +87,13 @@
 }
 
 .exec-search-btn {
-  background-color: #7f5af0;
-  border: 2px solid #7f5af0;
+  background-color: #822535;
+  border: 2px solid #822535;
   border-radius: 10px;
   color: #fffffe;
   font-size: 16px;
   font-weight: 700;
   padding: 10px;
-  width: 150px;
 }
 
 .header-card-image {

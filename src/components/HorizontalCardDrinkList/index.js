@@ -39,7 +39,7 @@ function HorizontalCardDrinkList({ recipe, index, isFavorite, setFavoriteFoods }
       </Link>
       {category && <p data-testid={ `${index}-card-top-text` }>{ `${category}`}</p>}
       {date && <p data-testid={ `${index}-card-done-date` }>{date}</p>}
-      <button
+      {/* <button
         type="button"
         onClick={ handleClick }
         data-testid={ `${index}-card-share-btn` }
@@ -63,7 +63,7 @@ function HorizontalCardDrinkList({ recipe, index, isFavorite, setFavoriteFoods }
           alt="Favorite"
           onClick={ handleFavorite }
         />
-      }
+      } */}
     </section>
   );
 }

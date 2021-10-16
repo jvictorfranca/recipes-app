@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import './styles.css';
+
 function Login() {
   const history = useHistory();
   const PASSWORD_MINIMUM_LENGHT = 6;
@@ -36,7 +38,9 @@ function Login() {
   };
 
   return (
-    <>
+    <div className="container-login">
+      <img className="login-img" src="https://yt3.ggpht.com/ytc/AKedOLT_0KTDhZEuw3jfp_7Y2RPy_zG7sp5ly3RdlYTk=s900-c-k-c0x00ffffff-no-rj" />
+      <div className="login">
       <label htmlFor="email-input">
         <input
           type="email"
@@ -58,6 +62,7 @@ function Login() {
         />
       </label>
       <button
+        className="btn-login"
         type="button"
         data-testid="login-submit-btn"
         onClick={ handleSubmit }
@@ -65,7 +70,8 @@ function Login() {
       >
         Entrar
       </button>
-    </>
+      </div>
+    </div>
   );
 }
 
