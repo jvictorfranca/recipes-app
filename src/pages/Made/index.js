@@ -25,7 +25,7 @@ function Made() {
   }, []);
 
   return (
-    <main className="made-recipes">
+    <main className="made-recipes application-container">
       <Header title="Receitas Feitas" />
       <div className="buttons-div-made">
         <button

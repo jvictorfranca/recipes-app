@@ -1,7 +1,7 @@
 .progress-img {
   height: auto;
   object-fit: cover;
-  width: 100vw;
+  width: 100%;
 }
 
 .container {
@@ -62,7 +62,6 @@
   color: white;
   font-size: 30px;
   height: 10vh;
-  position: fixed;
   width: 350px;
 }
 
