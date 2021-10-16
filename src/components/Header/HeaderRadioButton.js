@@ -5,7 +5,6 @@ import propTypes from 'prop-types';
 function HeaderRadioButton({ value, onChange, text, dataTest, className }) {
   return (
     <label htmlFor={ text } className={ className }>
-      {text}
       <input
         id={ text }
         type="radio"
@@ -16,6 +15,7 @@ function HeaderRadioButton({ value, onChange, text, dataTest, className }) {
         onChange={ onChange }
         onClick={ onChange }
       />
+      {text}
     </label>
   );
 }

@@ -18,29 +18,32 @@ function Profile({ history }) {
   return (
     <main className="profile">
       <Header title="Perfil" />
-      <p data-testid="profile-email" className="profile-email">{answer}</p>
+      <h3 data-testid="profile-email" className="profile-email">{answer}</h3>
       <div className="profile-buttons-container">
+        <div>
+          <button
+            type="button"
+            className="recipes-buttons"
+            data-testid="profile-done-btn"
+            onClick={ () => {
+              history.push('/receitas-feitas');
+            } }
+          >
+            Receitas Feitas
+          </button>
+          <button
+            className="recipes-buttons"
+            type="button"
+            data-testid="profile-favorite-btn"
+            onClick={ () => {
+              history.push('/receitas-favoritas');
+            } }
+          >
+            Receitas Favoritas
+          </button>
+        </div>
         <button
-          type="button"
-          data-testid="profile-done-btn"
-          onClick={ () => {
-            history.push('/receitas-feitas');
-          } }
-        >
-          Receitas Feitas
-
-        </button>
-        <button
-          type="button"
-          data-testid="profile-favorite-btn"
-          onClick={ () => {
-            history.push('/receitas-favoritas');
-          } }
-        >
-          Receitas Favoritas
-
-        </button>
-        <button
+          className="recipes-buttons"
           type="button"
           data-testid="profile-logout-btn"
           onClick={ () => {

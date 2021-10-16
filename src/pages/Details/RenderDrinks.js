@@ -129,7 +129,7 @@ export default function RenderDrink(id) {
             { drink.strInstructions }
           </p>
         </div>
-        <div className="recomendationsArea" onScroll={ () => setDisabled(false) }>
+        {/* <div className="recomendationsArea" onScroll={ () => setDisabled(false) }>
           {
             recomendations.map(
               (drinkk, index) => (
@@ -148,7 +148,7 @@ export default function RenderDrink(id) {
               ),
             )
           }
-        </div>
+        </div> */}
         <button
           type="button"
           data-testid="start-recipe-btn"

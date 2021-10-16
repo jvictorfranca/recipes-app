@@ -7,6 +7,8 @@ import recipesContext from '../../context/recipesContext';
 import HeaderCardRecipe from './HeaderCardRecipe';
 import HeaderCardDrink from './HeaderCardDrinks';
 
+import './searchHeader.css'
+
 function SearchHeader({ match, history }) {
   const [radioIngredient, setRadioIngredient] = useState(false);
   const [radioName, setRadioName] = useState(false);
@@ -106,6 +108,14 @@ function SearchHeader({ match, history }) {
             placeholder="Insira um valor"
             onChange={ (e) => setInputValue(e.target.value) }
           />
+        <button
+            type="button"
+            onClick={ handleButtonClick }
+            data-testid="exec-search-btn"
+            className="exec-search-btn"
+          >
+            Busca
+          </button>
         </div>
         <div className="search-radio-div">
           <HeaderRadioButton
@@ -113,14 +123,14 @@ function SearchHeader({ match, history }) {
             text="Ingredientes"
             onChange={ handleRadioIngredient }
             dataTest="ingredient-search-radio"
-            className="ingredient-search-radio"
+            className="first-letter-search-radio"
           />
           <HeaderRadioButton
             value={ radioName }
             text="Nome"
             onChange={ handleRadioName }
             dataTest="name-search-radio"
-            className="name-search-radio"
+            className="first-letter-search-radio"
           />
           <HeaderRadioButton
             value={ radioFirstLetter }
@@ -130,7 +140,7 @@ function SearchHeader({ match, history }) {
             className="first-letter-search-radio"
           />
         </div>
-        <div className="search-button-div">
+        {/* <div className="search-button-div">
           <button
             type="button"
             onClick={ handleButtonClick }
@@ -139,7 +149,7 @@ function SearchHeader({ match, history }) {
           >
             Busca
           </button>
-        </div>
+        </div> */}
       </form>
 
       {match.path === '/comidas'
