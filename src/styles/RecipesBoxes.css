@@ -8,9 +8,29 @@
     background-color: #ffcc01;
     display: flex;
     height: 530px;
-    overflow: auto;
+    overflow-y: overlay;
     position: absolute;
     width: 450px;
+
+  }
+
+  ::-webkit-scrollbar {
+    display: contents;
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(245, 245, 245, 0);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(255, 160, 82);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
   }
 
   .recipes-application-border {
@@ -30,5 +50,6 @@
   body {
     background-color: white;
   }
+
 
 }
