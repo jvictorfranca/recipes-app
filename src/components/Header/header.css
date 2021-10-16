@@ -20,15 +20,17 @@
   border-radius: 5px;
   display: none;
   justify-content: center;
-  margin-top: 50px;
   padding: 10px;
   transition: 850ms;
-  width: 95vw;
+  width: 100%;
 }
 
 .search-header.active {
+  border-radius: 0;
+  border-top: 1px solid black;
   display: flex;
   transition: 350ms;
+  width: 100%;
 }
 
 /* Search input e div */

@@ -7,7 +7,7 @@ import recipesContext from '../../context/recipesContext';
 import HeaderCardRecipe from './HeaderCardRecipe';
 import HeaderCardDrink from './HeaderCardDrinks';
 
-import './searchHeader.css'
+import './searchHeader.css';
 
 function SearchHeader({ match, history }) {
   const [radioIngredient, setRadioIngredient] = useState(false);
@@ -96,9 +96,9 @@ function SearchHeader({ match, history }) {
   }, [match.path, searchedRecipes, setSearchedDrinks, setSearchedRecipes]);
 
   return (
-    <section>
+    <section className="search-header-container">
 
-      <form action="GET">
+      <form action="GET" className="form-search-header">
         <div className="search-input-div">
           <input
             type="text"
@@ -108,7 +108,7 @@ function SearchHeader({ match, history }) {
             placeholder="Insira um valor"
             onChange={ (e) => setInputValue(e.target.value) }
           />
-        <button
+          <button
             type="button"
             onClick={ handleButtonClick }
             data-testid="exec-search-btn"

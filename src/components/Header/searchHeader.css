@@ -1,0 +1,28 @@
+.search-header-container {
+  width: 100%;
+}
+
+
+.form-search-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-input-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-input-div input {
+  flex-grow: 1;
+  margin: 5px;
+}
+
+.search-input-div button {
+  margin: 5px;
+}
+
+.search-radio-div {
+  display: flex;
+  justify-content: space-around;
+}
