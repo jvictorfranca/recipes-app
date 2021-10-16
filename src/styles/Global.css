@@ -14,9 +14,6 @@ body {
   filter: invert(89%) sepia(4%) saturate(426%) hue-rotate(29deg) brightness(115%);
 }
 
-a {
-  text-decoration: none;
-}
 
 .title-text {
   color: white;
@@ -37,4 +34,8 @@ a {
 
 .selecting-button:hover {
   background-color: #9784d1;
+}
+
+.application-container {
+  width: 100%;
 }

@@ -7,3 +7,7 @@
 .profile-buttons-container {
   display: flex;
 }
+
+.profile {
+  width: 100%;
+}

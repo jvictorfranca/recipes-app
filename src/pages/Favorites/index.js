@@ -29,7 +29,7 @@ function Favorites() {
   }, [favoriteFoods]);
 
   return (
-    <section className="favorite-recipes">
+    <section className="favorite-recipes application-container">
       <Header title="Receitas Favoritas" />
       <div className="favorite-recipes-buttons-div">
         <button

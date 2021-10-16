@@ -7,7 +7,7 @@ import Header from '../../components/Header/Header';
 function Explore() {
   const history = useHistory();
   return (
-    <div className="explore">
+    <div className="explore application-container">
       <Header title="Explorar" />
       <button
         type="button"

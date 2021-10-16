@@ -24,11 +24,12 @@
 .details-img {
   height: auto;
   object-fit: cover;
-  width: 100vw;
+  width: 100%;
 }
 
 .container {
   background-color: #ffcc01;
+  width: 100%;
 }
 
 .title-style {

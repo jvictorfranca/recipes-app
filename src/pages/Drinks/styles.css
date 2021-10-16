@@ -3,6 +3,7 @@
   background-color: #ffcc01;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .recipes-buttons-container {
