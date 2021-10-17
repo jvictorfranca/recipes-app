@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ab19b2696c2519a9e5003f1e8e13d121",
+    "revision": "03deecb0c5043d16ee3a16521be296fc",
     "url": "/recipes-app/index.html"
   },
   {
-    "revision": "f4c92fd5785b8e7e9fda",
-    "url": "/recipes-app/static/css/main.0c5ed690.chunk.css"
+    "revision": "0133382e3cd38c184c63",
+    "url": "/recipes-app/static/css/main.acfdad11.chunk.css"
   },
   {
-    "revision": "b5452cfee7ae9e6f7ca5",
-    "url": "/recipes-app/static/js/2.d055b12c.chunk.js"
+    "revision": "eb7908968d89e84eea6a",
+    "url": "/recipes-app/static/js/2.9bf1d2f9.chunk.js"
   },
   {
     "revision": "737926aa5f30acaedb866e79ac0007c9",
-    "url": "/recipes-app/static/js/2.d055b12c.chunk.js.LICENSE.txt"
+    "url": "/recipes-app/static/js/2.9bf1d2f9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f4c92fd5785b8e7e9fda",
-    "url": "/recipes-app/static/js/main.851de244.chunk.js"
+    "revision": "0133382e3cd38c184c63",
+    "url": "/recipes-app/static/js/main.811c15e8.chunk.js"
   },
   {
     "revision": "25993f9b630f63b44851",
     "url": "/recipes-app/static/js/runtime-main.1228032d.js"
+  },
+  {
+    "revision": "452513f30b972c7fdf3f125de775fd18",
+    "url": "/recipes-app/static/media/background_kiskukta_mainscreen_dribbble_800x600px.452513f3.jpg"
   },
   {
     "revision": "b89133460c9aef111d6e773396b5917d",
@@ -34,6 +38,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "157945fffa619b919f7bb65fe11b7b43",
     "url": "/recipes-app/static/media/exploreIcon.157945ff.svg"
+  },
+  {
+    "revision": "955eca021d316baa1d843d45932cabe1",
+    "url": "/recipes-app/static/media/ezgif.com-gif-maker (1).955eca02.gif"
+  },
+  {
+    "revision": "4e7c48fff242b7b8e165e8cf9d13fcff",
+    "url": "/recipes-app/static/media/ezgif.com-gif-maker (2).4e7c48ff.gif"
+  },
+  {
+    "revision": "3f4c18be5727fefeec4e8ca29bd6f985",
+    "url": "/recipes-app/static/media/ezgif.com-gif-maker (4).3f4c18be.gif"
   },
   {
     "revision": "b27ba19ea033355b73926443af1756e9",
