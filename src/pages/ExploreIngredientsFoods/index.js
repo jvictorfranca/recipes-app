@@ -4,24 +4,25 @@ import propTypes from 'prop-types';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import recipesContext from '../../context/recipesContext';
+import Loading from '../../components/Loading';
 
 function ExploreIngredientsFoods({ history }) {
   const { setRecipesIngredients } = useContext(recipesContext);
-  const [ingredientes, setIngredientes] = useState([]);
+  const [ingredientes, setIngredientes] = useState();
 
   useEffect(() => {
     async function getData() {
       const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
       const data = await response.json();
-      const QUANTITY = 12;
+      const QUANTITY = 100;
       setIngredientes(data.meals.filter((__, index) => index < QUANTITY));
     }
     getData();
   }, []);
-  if (!ingredientes) return <h1>Loading</h1>;
+  if (!ingredientes) return <Loading />;
 
   return (
-    <div className="explore-ingredients-foods">
+    <div className="explore-ingredients-foods application-container">
       <Header title="Explorar Ingredientes" />
       <ul>
         {

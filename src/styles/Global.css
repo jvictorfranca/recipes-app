@@ -37,5 +37,7 @@ body {
 }
 
 .application-container {
+  height: fit-content;
+  padding-bottom: 60px;
   width: 100%;
 }
