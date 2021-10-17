@@ -57,6 +57,7 @@ function App() {
               <Route exact component={ Pages.Profile } path="/perfil" />
               <Route exact component={ Pages.Made } path="/receitas-feitas" />
               <Route exact component={ Pages.Favorites } path="/receitas-favoritas" />
+              <Route exact component={ Pages.Loading } path="/loading" />
             </Switch>
           </Provider>
         </div>

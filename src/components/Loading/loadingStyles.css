@@ -1,0 +1,35 @@
+.loading-screen-container {
+  align-items: center;
+  background-image: url('./images/background_kiskukta_mainscreen_dribbble_800x600px.jpg');
+  background-position: center;
+  background-size: 99% 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hamburger-loading {
+  margin: 0;
+  width: 20%;
+}
+
+.text-loading {
+  margin: 0;
+  width: 50%;
+}
+
+.loading-images-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%;
+
+}
+
+.hamburger-jumping {
+  width: 100%;
+}
+

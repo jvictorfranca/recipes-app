@@ -14,6 +14,7 @@ import Profile from './Profile';
 import ProgressFood from './ProgressFood';
 import ProgressDrink from './ProgressDrink';
 import ExploreDrinksArea from './ExploreDrinksArea';
+import Loading from '../components/Loading';
 
 export default {
   Details,
@@ -32,4 +33,5 @@ export default {
   ProgressFood,
   ProgressDrink,
   ExploreDrinksArea,
+  Loading,
 };

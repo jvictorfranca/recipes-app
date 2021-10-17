@@ -7,6 +7,7 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardFoodList from '../../components/HorizontalCardFoodList';
 import recipesContext from '../../context/recipesContext';
+import Loading from '../../components/Loading';
 
 const BASIC_URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
@@ -15,9 +16,12 @@ function Foods({ match, history }) {
   const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categorySelected, setCategorySelected] = useState('all');
+  const [loadingCategory, setLoadingCategory] = useState(false);
+  const [loadingFood, setLoadingFood] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoadingCategory(true);
       const MAX_NUMBER_CATEGORIES = 5;
       const responseMeals = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
       const array = await responseMeals.json();
@@ -25,7 +29,8 @@ function Foods({ match, history }) {
       const arrayCategories = meals.map((meal) => meal.strCategory);
       const arrayCategoriesLimited = arrayCategories
         .filter((__, index) => index < MAX_NUMBER_CATEGORIES);
-      setCategories(arrayCategoriesLimited);
+      await setCategories(arrayCategoriesLimited);
+      setLoadingCategory(false);
     };
 
     fetchCategories();
@@ -33,13 +38,15 @@ function Foods({ match, history }) {
 
   useEffect(() => {
     const fetchFoods = async () => {
+      setLoadingFood(true);
       const MAX_NUMBER_FOODS = 12;
       const responseMeals = await fetch(BASIC_URL);
       const array = await responseMeals.json();
       const { meals } = array;
       const mealsLimited = meals
         .filter((__, index) => index < MAX_NUMBER_FOODS);
-      setFoods(mealsLimited);
+      await setFoods(mealsLimited);
+      setLoadingFood(false);
     };
 
     const fetchFoodsIngredients = async () => {
@@ -105,52 +112,57 @@ function Foods({ match, history }) {
   };
 
   return (
-    <div className="foods">
-      <Header title="Comidas" search match={ match } history={ history } />
-      <div className="recipes-buttons-container">
-        <button
-          data-testid="All-category-filter"
-          type="button"
-          className="recipes-buttons"
-          onClick={ () => handleButtonAll() }
-        >
-          All
-        </button>
 
-        {categories
-          ? (
-            categories.map((category, index) => (
-              <button
-                className="recipes-buttons"
+    (!loadingCategory && !loadingFood)
+      ? (
+        <div className="foods">
+          <Header title="Comidas" search match={ match } history={ history } />
+          <div className="recipes-buttons-container">
+            <button
+              data-testid="All-category-filter"
+              type="button"
+              className="recipes-buttons"
+              onClick={ () => handleButtonAll() }
+            >
+              All
+            </button>
+
+            {categories
+              ? (
+                categories.map((category, index) => (
+                  <button
+                    className="recipes-buttons"
+                    key={ index }
+                    data-testid={ `${category}-category-filter` }
+                    type="button"
+                    onClick={ () => handleButtonCategory(category) }
+                  >
+                    {category}
+                  </button>)))
+              : <p>Loading...</p>}
+
+          </div>
+
+          <div className="recipes-cards-container">
+
+            {foods ? mealsCorrect.map((food, index) => (
+
+              <HorizontalCardFoodList
+                recipe={ food }
+                index={ index }
+                history={ history }
                 key={ index }
-                data-testid={ `${category}-category-filter` }
-                type="button"
-                onClick={ () => handleButtonCategory(category) }
-              >
-                {category}
-              </button>)))
-          : <p>Loading...</p>}
+              />
 
-      </div>
+            ))
+              : <p>Loading...</p>}
 
-      <div className="recipes-cards-container">
+          </div>
 
-        {foods ? mealsCorrect.map((food, index) => (
+          <Footer />
+        </div>)
+      : <Loading />
 
-          <HorizontalCardFoodList
-            recipe={ food }
-            index={ index }
-            history={ history }
-            key={ index }
-          />
-
-        ))
-          : <p>Loading...</p>}
-
-      </div>
-
-      <Footer />
-    </div>
   );
 }
 

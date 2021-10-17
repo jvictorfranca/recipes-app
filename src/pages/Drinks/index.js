@@ -7,6 +7,7 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import HorizontalCardDrinkList from '../../components/HorizontalCardDrinkList';
 import drinksContext from '../../context/drinksContext';
+import Loading from '../../components/Loading';
 
 const BASIC_URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
@@ -14,10 +15,13 @@ function Drinks({ match, history }) {
   const [stateDrinks, setDrinks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categorySelected, setCategorySelected] = useState('all');
+  const [loadingCategory, setLoadingCategory] = useState(false);
+  const [loadingDrinks, setLoadingDrinks] = useState(false);
   const { drinksIngredients } = useContext(drinksContext);
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoadingCategory(true);
       const MAX_NUMBER_CATEGORIES = 5;
       const responseDrinks = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
       const array = await responseDrinks.json();
@@ -25,7 +29,8 @@ function Drinks({ match, history }) {
       const arrayCategories = drinks.map((drink) => drink.strCategory);
       const arrayCategoriesLimited = arrayCategories
         .filter((__, index) => index < MAX_NUMBER_CATEGORIES);
-      setCategories(arrayCategoriesLimited);
+      await setCategories(arrayCategoriesLimited);
+      setLoadingCategory(false);
     };
 
     fetchCategories();
@@ -33,13 +38,15 @@ function Drinks({ match, history }) {
 
   useEffect(() => {
     const fetchDrinks = async () => {
+      setLoadingDrinks(true);
       const MAX_NUMBER_DRINKS = 12;
       const responseDrinks = await fetch(BASIC_URL);
       const array = await responseDrinks.json();
       const { drinks } = array;
       const drinksLimited = drinks
         .filter((__, index) => index < MAX_NUMBER_DRINKS);
-      setDrinks(drinksLimited);
+      await setDrinks(drinksLimited);
+      setLoadingDrinks(false);
     };
 
     const fetchDrinksIngredients = async () => {
@@ -102,53 +109,55 @@ function Drinks({ match, history }) {
   };
 
   return (
-    <div className="drinks">
-      <Header title="Bebidas" search match={ match } history={ history } />
+    (!loadingCategory && !loadingDrinks) ? (
+      <div className="drinks">
+        <Header title="Bebidas" search match={ match } history={ history } />
 
-      <div className="recipes-buttons-container">
+        <div className="recipes-buttons-container">
 
-        <button
-          data-testid="All-category-filter"
-          type="button"
-          className="recipes-buttons"
-          onClick={ () => handleButtonAll() }
-        >
-          All
-        </button>
+          <button
+            data-testid="All-category-filter"
+            type="button"
+            className="recipes-buttons"
+            onClick={ () => handleButtonAll() }
+          >
+            All
+          </button>
 
-        {categories
-          ? (
-            categories.map((category, index) => (
-              <button
-                key={ index }
-                className="recipes-buttons"
-                data-testid={ `${category}-category-filter` }
-                type="button"
-                onClick={ () => handleButtonCategory(category) }
-              >
-                {category}
-              </button>)))
-          : <p>Loading...</p>}
+          {categories
+            ? (
+              categories.map((category, index) => (
+                <button
+                  key={ index }
+                  className="recipes-buttons"
+                  data-testid={ `${category}-category-filter` }
+                  type="button"
+                  onClick={ () => handleButtonCategory(category) }
+                >
+                  {category}
+                </button>)))
+            : <p>Loading...</p>}
 
-      </div>
+        </div>
 
-      <div className="recipes-cards-container">
+        <div className="recipes-cards-container">
 
-        {stateDrinks ? drinksCorrect.map((drink, index) => (
+          {stateDrinks ? drinksCorrect.map((drink, index) => (
 
-          <HorizontalCardDrinkList
-            recipe={ drink }
-            index={ index }
-            history={ history }
-            key={ index }
-          />
-        ))
-          : <p>Loading...</p>}
+            <HorizontalCardDrinkList
+              recipe={ drink }
+              index={ index }
+              history={ history }
+              key={ index }
+            />
+          ))
+            : <p>Loading...</p>}
 
-      </div>
+        </div>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>)
+      : <Loading />
   );
 }
 

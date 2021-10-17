@@ -7,6 +7,7 @@ import './style.css';
 import WhiteHeart from '../../images/whiteHeartIcon.svg';
 import BlackHeart from '../../images/blackHeartIcon.svg';
 import Share from '../../images/shareIcon.svg';
+import Loading from '../../components/Loading';
 
 function inProgressRedirect(history, id) {
   history.push(`/comidas/${id}/in-progress`);
@@ -46,7 +47,7 @@ export default function RenderFood(id) {
   }, [id]); // teste
 
   if (loading) {
-    return <h2>Loading</h2>;
+    return <Loading />;
   }
   const ingredients = [];
   const quantity = [];

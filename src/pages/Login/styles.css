@@ -3,7 +3,7 @@
   background-color: #ffcc01;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   justify-content: center;
 }
 
@@ -27,5 +27,5 @@
 }
 
 .login-img {
-  width: 40vw;
+  width: 40%;
 }

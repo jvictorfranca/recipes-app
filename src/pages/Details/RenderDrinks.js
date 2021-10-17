@@ -6,6 +6,7 @@ import helper from './helper';
 import WhiteHeart from '../../images/whiteHeartIcon.svg';
 import BlackHeart from '../../images/blackHeartIcon.svg';
 import Share from '../../images/shareIcon.svg';
+import Loading from '../../components/Loading';
 
 function inProgressRedirect(history, id) {
   history.push(`/bebidas/${id}/in-progress`);
@@ -44,7 +45,7 @@ export default function RenderDrink(id) {
   }, [id]);
 
   if (loading) {
-    return <h2>Loading</h2>;
+    return <Loading />;
   }
   const ingredients = [];
   const quantity = [];
