@@ -2,6 +2,10 @@
   display: none;
 }
 
+.recipes-application-border {
+  width: 100%;
+}
+
 .recipes-application {
   height: 100vh;
 }

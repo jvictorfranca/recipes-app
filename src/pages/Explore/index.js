@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
+import './ExploreStyles.css';
+
 function Explore() {
   const history = useHistory();
   return (
