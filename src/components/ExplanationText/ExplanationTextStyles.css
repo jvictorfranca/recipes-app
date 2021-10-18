@@ -1,0 +1,22 @@
+.explanation_title {
+  color: orange;
+  font-size: 7vh;
+  margin: 10px;
+  margin-bottom: 50px;
+  text-shadow: 2px 0 0 rgb(187, 44, 44) , -2px 0 0 rgb(187, 44, 44) , 0 2px 0 rgb(187, 44, 44) , 0 -2px 0 rgb(187, 44, 44) , 1px 1px rgb(187, 44, 44) , -1px -1px 0 rgb(187, 44, 44) , 1px -1px 0 rgb(187, 44, 44) , -1px 1px 0 rgb(187, 44, 44);
+}
+
+.explanation_p {
+  color: rgb(78, 14, 14);
+  font-family: sans-serif;
+  font-size: 25px;
+  line-height: 30px;
+  margin: 20px;
+  text-align: justify;
+  text-indent: 30px;
+  text-justify: inter-word;
+}
+
+.text-image {
+  width: 70%;
+}

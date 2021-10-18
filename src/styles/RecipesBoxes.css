@@ -6,7 +6,15 @@
   height: 100vh;
 }
 
+.site-container {
+  display: flex;
+}
+
 @media screen and ( min-width : 500px ) {
+
+  .site-container {
+    justify-content: center;
+  }
 
   .recipes-application {
     background-color: #ffcc01;
@@ -52,8 +60,26 @@
   }
 
   body {
-    background-color: white;
+    background-color: rgb(238, 238, 238);
   }
 
+
+}
+
+@media screen and ( min-width : 1000px ) {
+
+  .explication-text {
+    color: black;
+    display: inline;
+    flex-grow: 1;
+    justify-self: center;
+    max-width: 900px;
+    text-align: center;
+    width: 20%;
+  }
+
+  .site-container {
+    justify-content: space-around;
+  }
 
 }

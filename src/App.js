@@ -7,10 +7,11 @@ import Provider from './context/provider';
 
 import './styles/Global.css';
 import './styles/RecipesBoxes.css';
+import ExplanationText from './components/ExplanationText';
 
 function App() {
   return (
-    <>
+    <main className="site-container">
       <div className="recipes-application-border">
 
         <div className="recipes-application">
@@ -63,9 +64,9 @@ function App() {
         </div>
       </div>
       <div className="explication-text">
-        alou
+        <ExplanationText />
       </div>
-    </>
+    </main>
   );
 }
 
