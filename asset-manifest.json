@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/recipes-app/static/css/main.3d358bc1.chunk.css",
-    "main.js": "/recipes-app/static/js/main.5516c142.chunk.js",
-    "main.js.map": "/recipes-app/static/js/main.5516c142.chunk.js.map",
+    "main.css": "/recipes-app/static/css/main.672c1bba.chunk.css",
+    "main.js": "/recipes-app/static/js/main.73e56e33.chunk.js",
+    "main.js.map": "/recipes-app/static/js/main.73e56e33.chunk.js.map",
     "runtime-main.js": "/recipes-app/static/js/runtime-main.1228032d.js",
     "runtime-main.js.map": "/recipes-app/static/js/runtime-main.1228032d.js.map",
-    "static/js/2.9bf1d2f9.chunk.js": "/recipes-app/static/js/2.9bf1d2f9.chunk.js",
-    "static/js/2.9bf1d2f9.chunk.js.map": "/recipes-app/static/js/2.9bf1d2f9.chunk.js.map",
+    "static/js/2.e51cb8f1.chunk.js": "/recipes-app/static/js/2.e51cb8f1.chunk.js",
+    "static/js/2.e51cb8f1.chunk.js.map": "/recipes-app/static/js/2.e51cb8f1.chunk.js.map",
     "index.html": "/recipes-app/index.html",
-    "precache-manifest.7c37c6da59122ed0501ad7e456be9c85.js": "/recipes-app/precache-manifest.7c37c6da59122ed0501ad7e456be9c85.js",
+    "precache-manifest.9e556f4bb80e7a7b801c318f2249cc63.js": "/recipes-app/precache-manifest.9e556f4bb80e7a7b801c318f2249cc63.js",
     "service-worker.js": "/recipes-app/service-worker.js",
-    "static/css/main.3d358bc1.chunk.css.map": "/recipes-app/static/css/main.3d358bc1.chunk.css.map",
-    "static/js/2.9bf1d2f9.chunk.js.LICENSE.txt": "/recipes-app/static/js/2.9bf1d2f9.chunk.js.LICENSE.txt",
+    "static/css/main.672c1bba.chunk.css.map": "/recipes-app/static/css/main.672c1bba.chunk.css.map",
+    "static/js/2.e51cb8f1.chunk.js.LICENSE.txt": "/recipes-app/static/js/2.e51cb8f1.chunk.js.LICENSE.txt",
     "static/media/loadingStyles.css": "/recipes-app/static/media/background_kiskukta_mainscreen_dribbble_800x600px.452513f3.jpg",
     "static/media/blackHeartIcon.svg": "/recipes-app/static/media/blackHeartIcon.b8913346.svg",
     "static/media/drinkIcon.svg": "/recipes-app/static/media/drinkIcon.f87c47c3.svg",
@@ -27,8 +27,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.1228032d.js",
-    "static/js/2.9bf1d2f9.chunk.js",
-    "static/css/main.3d358bc1.chunk.css",
-    "static/js/main.5516c142.chunk.js"
+    "static/js/2.e51cb8f1.chunk.js",
+    "static/css/main.672c1bba.chunk.css",
+    "static/js/main.73e56e33.chunk.js"
   ]
 }
