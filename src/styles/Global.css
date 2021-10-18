@@ -21,19 +21,21 @@ body {
 }
 
 .selecting-button {
-  background-color: #7f5af0;
-  border: 2px solid #7f5af0;
-  border-radius: 10px;
+  background-color: #822535;
+  border-radius: 5px;
   color: #fffffe;
-  font-size: 16px;
+  flex-basis: auto;
+  flex-grow: 1;
+  font-size: 0.9em;
   font-weight: 700;
-  margin: 10px;
+  margin: 5px;
   padding: 10px;
   width: fit-content;
 }
 
+
 .selecting-button:hover {
-  background-color: #9784d1;
+  background-color: #994035;
 }
 
 .application-container {

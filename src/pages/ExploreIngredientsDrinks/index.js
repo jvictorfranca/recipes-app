@@ -6,6 +6,8 @@ import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading';
 import drinksContext from '../../context/drinksContext';
 
+import './ExploreIngredients.css';
+
 function ExploreIngredientsDrinks() {
   const { setDrinksIngredients } = useContext(drinksContext);
   const [ingredientes, setIngredientes] = useState();
@@ -33,23 +35,25 @@ function ExploreIngredientsDrinks() {
   return (
     <div className="explore-ingredients-drinks application-container">
       <Header title="Explorar Ingredientes" />
-      {
-        ingredientes.map(
-          (item, index) => (
-            <button
-              type="button"
-              onClick={ () => redirecionar(item.strIngredient1) }
-              key={ item.strIngredient1 }
-              data-testid={ `${index}-ingredient-card` }
-              aria-hidden="true"
-              style={ { marginTop: '50px' } }
-            >
-              <img data-testid={ `${index}-card-img` } src={ `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` } alt={ item.strIngredient1 } />
-              <p data-testid={ `${index}-card-name` }>{ item.strIngredient1 }</p>
-            </button>
-          ),
-        )
-      }
+      <ul className="ingredients-list-container">
+        {
+          ingredientes.map(
+            (item, index) => (
+              <button
+                type="button"
+                onClick={ () => redirecionar(item.strIngredient1) }
+                key={ item.strIngredient1 }
+                data-testid={ `${index}-ingredient-card` }
+                aria-hidden="true"
+                className="ingredient-item"
+              >
+                <img data-testid={ `${index}-card-img` } src={ `https://www.thecocktaildb.com/images/ingredients/${item.strIngredient1}-Small.png` } alt={ item.strIngredient1 } />
+                <p data-testid={ `${index}-card-name` }>{ item.strIngredient1 }</p>
+              </button>
+            ),
+          )
+        }
+      </ul>
       <Footer />
     </div>
   );

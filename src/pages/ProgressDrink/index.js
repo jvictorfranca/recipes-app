@@ -3,7 +3,8 @@ import Copy from 'clipboard-copy';
 import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import helper from '../Details/helper';
-import { handleCocktails, getIngredientsCocktails, handleButton, checkInput } from './Helper';
+import { handleCocktails, getIngredientsCocktails,
+  handleButton, checkInput } from './Helper';
 
 import '../ProgressFood/style.css';
 import WhiteHeart from '../../images/whiteHeartIcon.svg';
@@ -53,13 +54,29 @@ export default function ProgressDrink({ match: { params: { id } } }) {
 
   function handleRedirect() {
     history.push('/receitas-feitas');
+    const today = new Date();
+    const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+    let allRecipes = [];
+    if (localStorage.doneRecipes) { allRecipes = JSON.parse(localStorage.doneRecipes); }
+    const OBJdrink = {
+      id: drink.idDrink,
+      type: 'bebida',
+      area: '',
+      category: drink.strCategory,
+      alcoholicOrNot: drink.strAlcoholic,
+      name: drink.strDrink,
+      image: drink.strDrinkThumb,
+      doneDate: date,
+      tags: [drink.strTags],
+    };
+    const allNewRecipes = [...allRecipes, OBJdrink];
+    localStorage.doneRecipes = JSON.stringify(allNewRecipes);
   }
 
   function shareButton() {
     Copy(`http://localhost:3000/bebidas/${id}`);
     setCopied(true);
   }
-
   return (
     <div className="container">
       <img
@@ -82,7 +99,8 @@ export default function ProgressDrink({ match: { params: { id } } }) {
               data-testid="favorite-btn"
               alt="Favorite"
               onClick={
-                () => helper.saveFavoriteLocalstorage(drink, favorite, setFavorite, 'idDrink')
+                () => helper
+                  .saveFavoriteLocalstorage(drink, favorite, setFavorite, 'idDrink')
               }
             />
             <input
@@ -108,17 +126,21 @@ export default function ProgressDrink({ match: { params: { id } } }) {
                 /* style={ currentIngredients.includes(ingredient)
                   ? { textDecoration: 'line-through' } : undefined } */
               >
-                {`${ingredient} ${quantity[index]}`}
-                <input
+                <label htmlFor={ ingredient }>
+
+                  {`${ingredient} ${quantity[index]}`}
+                  <input
                   /* checked={ currentIngredients.includes(ingredient) || undefined } */
-                  onChange={ ({ target }) => {
-                    handleCocktails(target, completeIngredients, id);
-                    handleButton(completeIngredients, ingredients, setButton, history);
-                  } }
-                  value={ ingredient }
-                  id={ ingredient }
-                  type="checkbox"
-                />
+                    onChange={ ({ target }) => {
+                      handleCocktails(target, completeIngredients, id);
+                      handleButton(completeIngredients, ingredients, setButton, history);
+                    } }
+                    value={ ingredient }
+                    id={ ingredient }
+                    type="checkbox"
+                  />
+
+                </label>
               </li>
             ))}
           </ul>

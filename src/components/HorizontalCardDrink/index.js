@@ -12,7 +12,7 @@ import shareIcon from '../../images/shareIcon.svg';
 import './styles.css';
 
 function HorizontalCardDrink({ recipe, index, isFavorite, setFavoriteFoods }) {
-  const { image, category, name, alcoholicOrNot, date, type, id, tags } = recipe;
+  const { image, category, name, alcoholicOrNot, doneDate: date, type, id, tags } = recipe;
 
   const [showMessage, setShowmessage] = useState(false);
   const [favorite, setFavorite] = useState(true);
@@ -20,7 +20,6 @@ function HorizontalCardDrink({ recipe, index, isFavorite, setFavoriteFoods }) {
   const handleClick = () => {
     const link = `http://${window.location.href.split('/')[2]}/${type}s/${id}`;
     Copy(link);
-    console.log(window.location.href.split('/'));
 
     setShowmessage(true);
   };
@@ -80,7 +79,7 @@ HorizontalCardDrink.propTypes = {
     image: propTypes.string,
     category: propTypes.string,
     name: propTypes.string,
-    date: propTypes.string,
+    doneDate: propTypes.string,
     type: propTypes.string,
     id: propTypes.string,
     tags: propTypes.arrayOf(propTypes.string),

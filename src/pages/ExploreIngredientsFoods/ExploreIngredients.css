@@ -1,0 +1,11 @@
+.ingredients-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.ingredient-item {
+  background-color: #9c3546de;
+  flex-grow: 1;
+  margin: 5px;
+}

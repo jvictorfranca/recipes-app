@@ -6,6 +6,8 @@ import Header from '../../components/Header/Header';
 import recipesContext from '../../context/recipesContext';
 import Loading from '../../components/Loading';
 
+import './ExploreIngredients.css';
+
 function ExploreIngredientsFoods({ history }) {
   const { setRecipesIngredients } = useContext(recipesContext);
   const [ingredientes, setIngredientes] = useState();
@@ -24,7 +26,7 @@ function ExploreIngredientsFoods({ history }) {
   return (
     <div className="explore-ingredients-foods application-container">
       <Header title="Explorar Ingredientes" />
-      <ul>
+      <ul className="ingredients-list-container">
         {
           ingredientes.map(
             (item, index) => (
@@ -36,6 +38,7 @@ function ExploreIngredientsFoods({ history }) {
                 } }
                 key={ item.idIngredient }
                 data-testid={ `${index}-ingredient-card` }
+                className="ingredient-item"
               >
                 <img data-testid={ `${index}-card-img` } src={ `https://www.themealdb.com/images/ingredients/${item.strIngredient}-Small.png` } alt={ item.strIngredient } />
                 <p data-testid={ `${index}-card-name` }>{ item.strIngredient }</p>

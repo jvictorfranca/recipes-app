@@ -13,7 +13,7 @@ function ExploreFoods() {
     history.push(`/comidas/${id}`);
   }
   return (
-    <div className="explore-foods">
+    <div className="explore-foods application-container">
       <Header title="Explorar Comidas" />
       <button
         type="button"

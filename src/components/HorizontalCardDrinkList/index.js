@@ -28,7 +28,6 @@ function HorizontalCardDrinkList({ recipe, index, isFavorite, setFavoriteFoods }
     setFavorite(!favorite);
     setFavoriteFoods(JSON.parse(localStorage.favoriteRecipes));
   };
-
   return (
     <section className="done-card" data-testid={ `${index}-recipe-card` }>
       <Link to={ `/${type}s/${id}` }>

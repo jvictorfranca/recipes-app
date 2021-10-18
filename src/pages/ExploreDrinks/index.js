@@ -13,7 +13,7 @@ function ExploreDrinks() {
     history.push(`/bebidas/${id}`);
   }
   return (
-    <div className="explore-drinks">
+    <div className="explore-drinks application-container">
       <Header title="Explorar Bebidas" />
       <button
         type="button"

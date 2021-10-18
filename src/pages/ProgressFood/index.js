@@ -3,14 +3,14 @@ import Copy from 'clipboard-copy';
 import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import helper from '../Details/helper';
-import { handleMeals, getIngredientsMels, handleButton, checkInput } from '../ProgressDrink/Helper';
+import { handleMeals, getIngredientsMels,
+  handleButton, checkInput } from '../ProgressDrink/Helper';
 
 import WhiteHeart from '../../images/whiteHeartIcon.svg';
 import BlackHeart from '../../images/blackHeartIcon.svg';
 import Share from '../../images/shareIcon.svg';
 
 import './style.css';
-
 
 export default function ProgressFood({ match: { params: { id } } }) {
   const [meal, setMeal] = useState({});
@@ -54,6 +54,23 @@ export default function ProgressFood({ match: { params: { id } } }) {
 
   function handleRedirect() {
     history.push('/receitas-feitas');
+    const today = new Date();
+    const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+    let allRecipes = [];
+    if (localStorage.doneRecipes) { allRecipes = JSON.parse(localStorage.doneRecipes); }
+    const OBJmeal = {
+      id: meal.idMeal,
+      type: 'comida',
+      area: meal.strArea,
+      category: meal.strCategory,
+      alcoholicOrNot: '',
+      name: meal.strMeal,
+      image: meal.strMealThumb,
+      doneDate: date,
+      tags: [meal.strTags],
+    };
+    const allNewRecipes = [...allRecipes, OBJmeal];
+    localStorage.doneRecipes = JSON.stringify(allNewRecipes);
   }
 
   function shareButton() {
@@ -83,7 +100,8 @@ export default function ProgressFood({ match: { params: { id } } }) {
               data-testid="favorite-btn"
               alt="Favorite"
               onClick={
-                () => helper.saveFavoriteLocalstorage(meal, favorite, setFavorite, 'idMeal')
+                () => helper
+                  .saveFavoriteLocalstorage(meal, favorite, setFavorite, 'idMeal')
               }
             />
             <input
@@ -99,42 +117,45 @@ export default function ProgressFood({ match: { params: { id } } }) {
             && 'Link copiado!'
           }
         </div>
-      <h3>Ingredients</h3>
-      <div className="ing-style">
-        <ul ref={ check }>
-          {ingredients.map((ingredient, index) => (
-            <li
-              data-testid={ `${index}-ingredient-step` }
-              key={ index }
-            >
-              {`${ingredient} ${quantity[index]}`}
-              <input
-                  onChange={ ({ target }) => {
-                  handleMeals(target, completeIngredients, id);
-                  handleButton(completeIngredients, ingredients, setButton, history);
-                } }
-                name={ ingredient }
-                value={ ingredient }
-                id={ ingredient }
-                type="checkbox"
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <h3>Instructions</h3>
-      <div className="inst-style">
-        <p data-testid="instructions">{ meal.strInstructions }</p>
-      </div>
-      <button
-        className="progress-recipe-btn"
-        disabled={ button }
-        data-testid="finish-recipe-btn"
-        type="button"
-        onClick={ handleRedirect }
-      >
-        Finalizar Receita
-      </button>
+        <h3>Ingredients</h3>
+        <div className="ing-style">
+          <ul ref={ check }>
+            {ingredients.map((ingredient, index) => (
+              <li
+                data-testid={ `${index}-ingredient-step` }
+                key={ index }
+              >
+                <label htmlFor={ ingredient }>
+                  {`${ingredient} ${quantity[index]}`}
+
+                  <input
+                    onChange={ ({ target }) => {
+                      handleMeals(target, completeIngredients, id);
+                      handleButton(completeIngredients, ingredients, setButton, history);
+                    } }
+                    name={ ingredient }
+                    value={ ingredient }
+                    id={ ingredient }
+                    type="checkbox"
+                  />
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <h3>Instructions</h3>
+        <div className="inst-style">
+          <p data-testid="instructions">{ meal.strInstructions }</p>
+        </div>
+        <button
+          className="progress-recipe-btn"
+          disabled={ button }
+          data-testid="finish-recipe-btn"
+          type="button"
+          onClick={ handleRedirect }
+        >
+          Finalizar Receita
+        </button>
       </div>
     </div>
   );
