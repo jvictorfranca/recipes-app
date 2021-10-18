@@ -20,6 +20,10 @@
   z-index: 100;
 }
 
+.startRecipe:hover {
+  background-color: #a0462a;
+}
+
 .details-img {
   height: auto;
   object-fit: cover;

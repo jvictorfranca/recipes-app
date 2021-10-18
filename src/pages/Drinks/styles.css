@@ -33,3 +33,8 @@
   margin-top: 5px;
   width: 90px;
 }
+
+
+.recipes-buttons:hover {
+  background-color: #a0462a;
+}

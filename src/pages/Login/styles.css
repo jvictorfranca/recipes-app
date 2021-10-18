@@ -26,6 +26,14 @@
   margin-top: 5px;
 }
 
+.btn-login:hover {
+  background-color: #a0462a;
+}
+
 .login-img {
   width: 40%;
+}
+
+.btn-login:disabled {
+  background-color: #e68c8c;
 }
